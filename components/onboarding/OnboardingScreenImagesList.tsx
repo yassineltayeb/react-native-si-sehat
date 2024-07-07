@@ -1,38 +1,50 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   Image,
-  Text,
   StyleSheet,
   Dimensions,
   FlatList,
   ViewToken,
 } from "react-native";
 import { Page } from "../../models/onboarding/page.model";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store/store";
+import { changeIndex } from "../../store/onboarding-slice";
 
 const { width, height } = Dimensions.get("window");
 
 interface OnboardingScreenImagesListProps {
   pages: Page[];
-  onSelectedIndexChange: (index: number) => void;
 }
 
 const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
   pages,
-  onSelectedIndexChange,
 }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const selectedIndex = useSelector((state: RootState) => state.onboarding);
+  const dispatch = useDispatch();
+
+  const flatListRef = useRef<FlatList<Page>>(null);
+
   const viewabilityConfig = {
     itemVisiblePercentThreshold: 50,
   };
+
+  useEffect(() => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToIndex({
+        animated: true,
+        index: selectedIndex ?? 0,
+      });
+    }
+  }, [selectedIndex]);
 
   const onViewableItemsChanged = useRef(
     ({ viewableItems }: { viewableItems: ViewToken[] }) => {
       if (viewableItems.length > 0) {
         const index = viewableItems[0].index;
-        setSelectedIndex(index ?? 0);
         if (index !== null && index !== undefined) {
-          onSelectedIndexChange(index ?? 0);
+          dispatch(changeIndex(index));
         }
       }
     }
@@ -49,6 +61,7 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
   return (
     <View>
       <FlatList
+        ref={flatListRef}
         data={pages}
         renderItem={({ item }) => <OnboardingScreenImage page={item} />}
         keyExtractor={(item) => item.id.toString()}
@@ -57,6 +70,11 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
         showsHorizontalScrollIndicator={false}
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
+        getItemLayout={(data, index) => ({
+          length: width,
+          offset: width * index,
+          index,
+        })}
       />
     </View>
   );
@@ -96,7 +114,7 @@ const styles = StyleSheet.create({
     color: "#18181B",
   },
   subTitle: {
-    fontWeight: "medium",
+    fontWeight: "500", // medium is not a valid fontWeight
     fontSize: 14,
     color: "#18181B",
   },

@@ -1,18 +1,28 @@
 import React, { useRef, useEffect } from "react";
-import { View, Text, StyleSheet, Dimensions, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  FlatList,
+  ViewToken,
+} from "react-native";
 import { Page } from "../../models/onboarding/page.model";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { changeIndex } from "../../store/onboarding-slice";
 
 const { width, height } = Dimensions.get("screen");
 
 interface OnboardingScreenTitlesProps {
   pages: Page[];
-  selectedIndex: number;
 }
 
 const OnboardingScreenTitles: React.FC<OnboardingScreenTitlesProps> = ({
   pages,
-  selectedIndex,
 }) => {
+  const selectedIndex = useSelector((state: RootState) => state.onboarding);
+  const dispatch = useDispatch();
   const flatListRef = useRef<FlatList>(null);
 
   useEffect(() => {
@@ -23,6 +33,17 @@ const OnboardingScreenTitles: React.FC<OnboardingScreenTitlesProps> = ({
       });
     }
   }, [selectedIndex]);
+
+  const onViewableItemsChanged = useRef(
+    ({ viewableItems }: { viewableItems: ViewToken[] }) => {
+      if (viewableItems.length > 0) {
+        const index = viewableItems[0].index;
+        if (index !== null && index !== undefined) {
+          dispatch(changeIndex(index ?? 0));
+        }
+      }
+    }
+  ).current;
 
   const OnboardingScreenTitle = ({
     page,
@@ -51,6 +72,7 @@ const OnboardingScreenTitles: React.FC<OnboardingScreenTitlesProps> = ({
       horizontal
       pagingEnabled
       showsHorizontalScrollIndicator={false}
+      onViewableItemsChanged={onViewableItemsChanged}
       getItemLayout={(data, index) => ({
         length: width,
         offset: width * index,

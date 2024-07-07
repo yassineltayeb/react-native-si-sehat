@@ -1,18 +1,29 @@
 import React, { useEffect, useRef } from "react";
-import { View, StyleSheet, Dimensions, FlatList } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  FlatList,
+  ViewToken,
+} from "react-native";
 import { Page } from "../../models/onboarding/page.model";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store/store";
+import { changeIndex } from "../../store/onboarding-slice";
 
 const { width, height } = Dimensions.get("window");
 
 interface OnboardingScreenPaginationProps {
   pages: Page[];
   selectedIndex: number;
+  onSelectedIndexChange: (index: number) => void;
 }
 
 const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
   pages,
-  selectedIndex,
 }) => {
+  const selectedIndex = useSelector((state: RootState) => state.onboarding);
+  const dispatch = useDispatch();
   const flatListRef = useRef<FlatList>(null);
 
   useEffect(() => {
@@ -23,6 +34,17 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
       });
     }
   }, [selectedIndex]);
+
+  const onViewableItemsChanged = useRef(
+    ({ viewableItems }: { viewableItems: ViewToken[] }) => {
+      if (viewableItems.length > 0) {
+        const index = viewableItems[0].index;
+        if (index !== null && index !== undefined) {
+          dispatch(changeIndex(index ?? 0));
+        }
+      }
+    }
+  ).current;
 
   const OnboardingScreenPage = ({
     page,
@@ -54,6 +76,8 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
       keyExtractor={(item) => item.id.toString()}
       horizontal
       pagingEnabled
+      showsHorizontalScrollIndicator={false}
+      onViewableItemsChanged={onViewableItemsChanged}
       getItemLayout={(data, index) => ({
         length: width,
         offset: (width - 20) * index,

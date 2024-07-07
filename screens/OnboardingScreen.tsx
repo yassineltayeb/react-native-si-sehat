@@ -44,15 +44,17 @@ const OnboardingScreen = () => {
       <View>
         <OnboardingScreenImagesList
           pages={pages}
-          onSelectedIndexChange={handleSelectedIndexChange}
         />
         <View style={styles.subContainer}>
           <OnboardingScreenPagination
             pages={pages}
             selectedIndex={selectedIndex}
+            onSelectedIndexChange={handleSelectedIndexChange}
           />
         </View>
-        <OnboardingScreenTitles pages={pages} selectedIndex={selectedIndex} />
+        <OnboardingScreenTitles
+          pages={pages}
+        />
       </View>
     </View>
   );
