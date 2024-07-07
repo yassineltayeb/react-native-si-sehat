@@ -42,22 +42,6 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
     return (
       <View style={styles.container}>
         <Image source={page.image} style={styles.image} />
-        {/* <View style={styles.paginationContainer}>
-          {pages.map((page, index) => (
-            <View
-              key={page.id}
-              style={[
-                styles.pageIndicator,
-                index === selectedIndex && styles.selectedPageIndicator,
-              ]}
-            ></View>
-          ))}
-        </View> */}
-        {/* <View style={styles.titlesContainer}>
-          <Text style={styles.title}>{page.title}</Text>
-          <Text style={styles.subTitle}>{page.subTitle}</Text>
-          <Text></Text>
-        </View> */}
       </View>
     );
   };
