@@ -46,13 +46,7 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
     }
   ).current;
 
-  const OnboardingScreenPage = ({
-    page,
-    index,
-  }: {
-    page: Page;
-    index: number;
-  }) => {
+  const OnboardingScreenPage = ({ index }: { index: number }) => {
     const isSelected = index === selectedIndex;
     return (
       <View style={styles.container}>
@@ -70,9 +64,7 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
     <FlatList
       ref={flatListRef}
       data={pages}
-      renderItem={({ item, index }) => (
-        <OnboardingScreenPage page={item} index={index} />
-      )}
+      renderItem={({ item, index }) => <OnboardingScreenPage index={index} />}
       keyExtractor={(item) => item.id.toString()}
       horizontal
       pagingEnabled
