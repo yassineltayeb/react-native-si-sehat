@@ -56,7 +56,6 @@ const OnboardingScreenTitles: React.FC<OnboardingScreenTitlesProps> = ({
       <View style={[styles.container]}>
         <Text style={styles.title}>{page.title}</Text>
         <Text style={styles.subTitle}>{page.subTitle}</Text>
-        <Text></Text>
       </View>
     );
   };
