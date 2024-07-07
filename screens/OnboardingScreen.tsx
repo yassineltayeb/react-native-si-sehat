@@ -42,9 +42,7 @@ const OnboardingScreen = () => {
   return (
     <View style={styles.container}>
       <View>
-        <OnboardingScreenImagesList
-          pages={pages}
-        />
+        <OnboardingScreenImagesList pages={pages} />
         <View style={styles.subContainer}>
           <OnboardingScreenPagination
             pages={pages}
@@ -52,9 +50,7 @@ const OnboardingScreen = () => {
             onSelectedIndexChange={handleSelectedIndexChange}
           />
         </View>
-        <OnboardingScreenTitles
-          pages={pages}
-        />
+          <OnboardingScreenTitles pages={pages} />
       </View>
     </View>
   );
@@ -67,7 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   subContainer: {
-    marginVertical: 24,
+    marginTop: 24,
     marginHorizontal: 16,
   },
 });
