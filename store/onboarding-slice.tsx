@@ -7,7 +7,8 @@ export const onboardingSlice = createSlice({
   initialState,
   reducers: {
     changeIndex(state, action: PayloadAction<number>) {
-      return action.payload ?? state;
+      state = action.payload ?? initialState;
+      return state;
     },
   },
 });

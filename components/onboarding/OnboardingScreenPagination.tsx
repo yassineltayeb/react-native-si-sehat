@@ -15,36 +15,35 @@ const { width, height } = Dimensions.get("window");
 
 interface OnboardingScreenPaginationProps {
   pages: Page[];
-  selectedIndex: number;
-  onSelectedIndexChange: (index: number) => void;
 }
 
 const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
   pages,
 }) => {
   const selectedIndex = useSelector((state: RootState) => state.onboarding);
-  const dispatch = useDispatch();
-  const flatListRef = useRef<FlatList>(null);
+  // const dispatch = useDispatch();
+  // const flatListRef = useRef<FlatList>(null);
 
-  useEffect(() => {
-    if (flatListRef.current) {
-      flatListRef.current.scrollToIndex({
-        animated: true,
-        index: selectedIndex,
-      });
-    }
-  }, [selectedIndex]);
+  // useEffect(() => {
+  //   if (flatListRef.current) {
+  //     flatListRef.current.scrollToIndex({
+  //       animated: true,
+  //       index: selectedIndex,
+  //     });
+  //   }
+  // }, [selectedIndex]);
 
-  const onViewableItemsChanged = useRef(
-    ({ viewableItems }: { viewableItems: ViewToken[] }) => {
-      if (viewableItems.length > 0) {
-        const index = viewableItems[0].index;
-        if (index !== null && index !== undefined) {
-          dispatch(changeIndex(index ?? 0));
-        }
-      }
-    }
-  ).current;
+  // const onViewableItemsChanged = useRef(
+  //   ({ viewableItems }: { viewableItems: ViewToken[] }) => {
+  //     if (viewableItems.length > 0) {
+  //       const index = viewableItems[0].index;
+  //       console.log("index 2", index);
+  //       if (index !== null && index !== undefined) {
+  //         dispatch(changeIndex(index));
+  //       }
+  //     }
+  //   }
+  // ).current;
 
   const OnboardingScreenPage = ({ index }: { index: number }) => {
     const isSelected = index === selectedIndex;
@@ -62,17 +61,18 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
 
   return (
     <FlatList
-      ref={flatListRef}
+      // ref={flatListRef}
       data={pages}
       renderItem={({ item, index }) => <OnboardingScreenPage index={index} />}
       keyExtractor={(item) => item.id.toString()}
       horizontal
       pagingEnabled
+      initialScrollIndex={0}
       showsHorizontalScrollIndicator={false}
-      onViewableItemsChanged={onViewableItemsChanged}
+      // onViewableItemsChanged={onViewableItemsChanged}
       getItemLayout={(data, index) => ({
         length: width,
-        offset: (width - 20) * index,
+        offset: width * index,
         index,
       })}
     />

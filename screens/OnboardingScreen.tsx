@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import { Page } from "../models/onboarding/page.model";
 import OnboardingScreenImagesList from "../components/onboarding/OnboardingScreenImagesList";
-import Title from "../components/common/labels/Title";
 import OnboardingScreenPagination from "../components/onboarding/OnboardingScreenPagination";
-import OnboardingScreenTitles from "../components/onboarding/OnboardingScreenTitles";
 
 const pages: Page[] = [
   {
@@ -30,27 +28,14 @@ const pages: Page[] = [
   },
 ];
 
-const { width, height } = Dimensions.get("window");
-
 const OnboardingScreen = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const handleSelectedIndexChange = (index: number) => {
-    setSelectedIndex(index);
-  };
-
   return (
     <View style={styles.container}>
       <View>
         <OnboardingScreenImagesList pages={pages} />
         <View style={styles.subContainer}>
-          <OnboardingScreenPagination
-            pages={pages}
-            selectedIndex={selectedIndex}
-            onSelectedIndexChange={handleSelectedIndexChange}
-          />
+          <OnboardingScreenPagination pages={pages} />
         </View>
-          <OnboardingScreenTitles pages={pages} />
       </View>
     </View>
   );
@@ -63,7 +48,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   subContainer: {
-    marginTop: 24,
     marginHorizontal: 16,
   },
 });

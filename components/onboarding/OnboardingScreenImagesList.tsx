@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   View,
+  Text,
   Image,
   StyleSheet,
   Dimensions,
@@ -34,7 +35,7 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
     if (flatListRef.current) {
       flatListRef.current.scrollToIndex({
         animated: true,
-        index: selectedIndex ?? 0,
+        index: selectedIndex,
       });
     }
   }, [selectedIndex]);
@@ -43,6 +44,7 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
     ({ viewableItems }: { viewableItems: ViewToken[] }) => {
       if (viewableItems.length > 0) {
         const index = viewableItems[0].index;
+        // console.log("index 1", index);
         if (index !== null && index !== undefined) {
           dispatch(changeIndex(index));
         }
@@ -54,6 +56,10 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
     return (
       <View style={styles.container}>
         <Image source={page.image} style={styles.image} />
+        <View style={[styles.titlesContainer]}>
+          <Text style={styles.title}>{page.title}</Text>
+          <Text style={styles.subTitle}>{page.subTitle}</Text>
+        </View>
       </View>
     );
   };
@@ -67,6 +73,7 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
         keyExtractor={(item) => item.id.toString()}
         horizontal
         pagingEnabled
+        initialScrollIndex={0}
         showsHorizontalScrollIndicator={false}
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
@@ -106,6 +113,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#254EDB",
   },
   titlesContainer: {
+    paddingVertical: 24,
     paddingHorizontal: 16,
   },
   title: {
