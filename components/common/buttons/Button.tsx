@@ -11,7 +11,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ text, type }) => {
   const containerStyle =
     type == ButtonType.Primary
-      ? "bg-primary-500 border-0"
+      ? "bg-primary-500 dark:bg-primary-400 border-0"
       : "bg-gray-50 dark:bg-dark-800 border-gray-200";
 
   const textStyle =
