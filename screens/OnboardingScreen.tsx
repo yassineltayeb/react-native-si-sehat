@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { Page } from "../models/onboarding/page.model";
 import OnboardingScreenImagesList from "../components/onboarding/OnboardingScreenImagesList";
 import OnboardingScreenPagination from "../components/onboarding/OnboardingScreenPagination";
@@ -30,26 +30,15 @@ const pages: Page[] = [
 
 const OnboardingScreen = () => {
   return (
-    <View style={styles.container}>
+    <View className="flex-1 bg-white justify-between">
       <View>
         <OnboardingScreenImagesList pages={pages} />
-        <View style={styles.subContainer}>
+        <View className="mx-5">
           <OnboardingScreenPagination pages={pages} />
         </View>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-    justifyContent: "space-between",
-  },
-  subContainer: {
-    marginHorizontal: 16,
-  },
-});
 
 export default OnboardingScreen;
