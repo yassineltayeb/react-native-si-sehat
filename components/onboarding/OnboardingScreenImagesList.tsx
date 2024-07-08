@@ -56,10 +56,10 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
       <View className="flex-1 w-screen">
         <Image className="h-screen/2 w-screen" source={page.image} />
         <View className="py-6 px-4">
-          <Text className="font-bold text-2xl text-typography-800">
+          <Text className="font-bold text-2xl text-typography-800 dark:text-gray-50">
             {page.title}
           </Text>
-          <Text className="font-medium text-md  text-typography-800">
+          <Text className="font-medium text-md  text-typography-800  dark:text-gray-50">
             {page.subTitle}
           </Text>
         </View>

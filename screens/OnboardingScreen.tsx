@@ -33,8 +33,8 @@ const pages: Page[] = [
 
 const OnboardingScreen = () => {
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
+      <View className="flex-1 bg-white dark:bg-dark-900">
         <OnboardingScreenImagesList pages={pages} />
         <OnboardingScreenPagination pages={pages} />
         <View className="flex-row justify-between mb-5">

@@ -11,15 +11,17 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ text, type }) => {
   const containerStyle =
     type == ButtonType.Primary
-      ? "bg-primary-500"
-      : "bg-gray-50 border-gray-200";
+      ? "bg-primary-500 border-0"
+      : "bg-gray-50 dark:bg-dark-800 border-gray-200";
 
   const textStyle =
-    type == ButtonType.Primary ? "text-white" : "text-typography-900";
+    type == ButtonType.Primary
+      ? "text-white"
+      : "text-typography-900 dark:text-white";
 
   return (
     <TouchableOpacity
-      className={`flex-1 rounded-md shadow-md mx-3 ${containerStyle}`}
+      className={`flex-1 rounded-md shadow-md mx-3 border ${containerStyle}`}
     >
       <Text className={`text-center text-sm font-bold px-4 py-2 ${textStyle}`}>
         {text}
