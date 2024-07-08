@@ -1,7 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import OnboardingScreen from "../../screens/OnboardingScreen";
 import { NavigationContainer } from "@react-navigation/native";
-import { SafeAreaView, StyleSheet } from "react-native";
 
 const Stack = createStackNavigator();
 

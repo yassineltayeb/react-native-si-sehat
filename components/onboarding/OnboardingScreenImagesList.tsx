@@ -3,7 +3,6 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
   Dimensions,
   FlatList,
   ViewToken,
@@ -54,11 +53,15 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
 
   const OnboardingScreenImage = ({ page }: { page: Page }) => {
     return (
-      <View style={styles.container}>
-        <Image source={page.image} style={styles.image} />
-        <View style={[styles.titlesContainer]}>
-          <Text style={styles.title}>{page.title}</Text>
-          <Text style={styles.subTitle}>{page.subTitle}</Text>
+      <View className="flex-1 w-screen">
+        <Image className="h-screen/2 w-screen" source={page.image} />
+        <View className="py-6 px-4">
+          <Text className="font-bold text-2xl text-typography-800">
+            {page.title}
+          </Text>
+          <Text className="font-medium text-md  text-typography-800">
+            {page.subTitle}
+          </Text>
         </View>
       </View>
     );
@@ -86,46 +89,5 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: width,
-  },
-  image: {
-    height: height * 0.5,
-    width: width,
-  },
-  paginationContainer: {
-    flex: 1,
-    flexDirection: "row",
-    paddingHorizontal: 16,
-    paddingVertical: 24,
-  },
-  pageIndicator: {
-    width: 42.33,
-    height: 4,
-    borderRadius: 90,
-    marginRight: 12,
-    backgroundColor: "#E5E7EB",
-  },
-  selectedPageIndicator: {
-    backgroundColor: "#254EDB",
-  },
-  titlesContainer: {
-    paddingVertical: 24,
-    paddingHorizontal: 16,
-  },
-  title: {
-    fontWeight: "bold",
-    fontSize: 24,
-    color: "#18181B",
-  },
-  subTitle: {
-    fontWeight: "500", // medium is not a valid fontWeight
-    fontSize: 14,
-    color: "#18181B",
-  },
-});
 
 export default OnboardingScreenImagesList;
