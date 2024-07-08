@@ -18,7 +18,7 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
   const OnboardingScreenPage = ({ index }: { index: number }) => {
     const isSelected = index === selectedIndex;
     return (
-      <View className="flex flex-row my-6">
+      <View className="flex-row my-6">
         <View
           className={`w-[42.33px] h-[4px] rounded-[90px] mr-3 ${
             isSelected ? "bg-[#254EDB]" : "bg-[#E5E7EB]"
@@ -30,6 +30,7 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
 
   return (
     <FlatList
+      className="mx-5"
       data={pages}
       renderItem={({ item, index }) => <OnboardingScreenPage index={index} />}
       keyExtractor={(item) => item.id.toString()}

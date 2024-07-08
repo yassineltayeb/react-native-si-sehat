@@ -3,6 +3,9 @@ import { View } from "react-native";
 import { Page } from "../models/onboarding/page.model";
 import OnboardingScreenImagesList from "../components/onboarding/OnboardingScreenImagesList";
 import OnboardingScreenPagination from "../components/onboarding/OnboardingScreenPagination";
+import Button from "../components/common/buttons/Button";
+import { ButtonType } from "../enums/ButtonTypes.enum";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const pages: Page[] = [
   {
@@ -30,14 +33,16 @@ const pages: Page[] = [
 
 const OnboardingScreen = () => {
   return (
-    <View className="flex-1 bg-white justify-between">
-      <View>
+    <SafeAreaView className="flex-1">
+      <View className="flex-1 bg-white">
         <OnboardingScreenImagesList pages={pages} />
-        <View className="mx-5">
-          <OnboardingScreenPagination pages={pages} />
+        <OnboardingScreenPagination pages={pages} />
+        <View className="flex-row mx-5 space-x-4 mb-5">
+          <Button text="Skip" type={ButtonType.Secondary} />
+          <Button text="Next" type={ButtonType.Primary} />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
