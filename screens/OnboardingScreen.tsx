@@ -33,11 +33,11 @@ const pages: Page[] = [
 
 const OnboardingScreen = () => {
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 bg-white">
         <OnboardingScreenImagesList pages={pages} />
         <OnboardingScreenPagination pages={pages} />
-        <View className="flex-row mx-5 space-x-4 mb-5">
+        <View className="flex-row justify-between mb-5">
           <Button text="Skip" type={ButtonType.Secondary} />
           <Button text="Next" type={ButtonType.Primary} />
         </View>

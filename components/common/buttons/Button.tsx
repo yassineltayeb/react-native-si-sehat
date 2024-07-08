@@ -9,13 +9,19 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ text, type }) => {
-  const style =
+  const containerStyle =
     type == ButtonType.Primary
-      ? "text-white bg-primary-500"
-      : "text-white bg-gray-50 border-gray-200";
+      ? "bg-primary-500"
+      : "bg-gray-50 border-gray-200";
+
+  const textStyle =
+    type == ButtonType.Primary ? "text-white" : "text-typography-900";
+
   return (
-    <TouchableOpacity className="flex-1">
-      <Text className={`text-center px-4 py-2 rounded-md shadow-md ${style}`}>
+    <TouchableOpacity
+      className={`flex-1 rounded-md shadow-md mx-4 ${containerStyle}`}
+    >
+      <Text className={`text-center text-sm font-bold px-4 py-2 ${textStyle}`}>
         {text}
       </Text>
     </TouchableOpacity>

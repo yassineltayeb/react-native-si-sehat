@@ -20,7 +20,7 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
     return (
       <View className="flex-row my-6">
         <View
-          className={`w-[42.33px] h-[4px] rounded-[90px] mr-3 ${
+          className={`w-[42.33px] h-[4px] rounded-full mr-3 ${
             isSelected ? "bg-[#254EDB]" : "bg-[#E5E7EB]"
           }`}
         ></View>
