@@ -8,7 +8,7 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, type }) => {
+const Button: React.FC<ButtonProps> = ({ text, type, onClick }) => {
   const containerStyle =
     type == ButtonType.Primary
       ? "bg-primary-500 dark:bg-primary-400 border-0"
@@ -21,6 +21,7 @@ const Button: React.FC<ButtonProps> = ({ text, type }) => {
 
   return (
     <TouchableOpacity
+      onPress={onClick}
       className={`flex-1 rounded-md shadow-md mx-3 border ${containerStyle}`}
     >
       <Text className={`text-center text-sm font-bold px-4 py-2 ${textStyle}`}>

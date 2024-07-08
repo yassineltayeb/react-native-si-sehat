@@ -6,6 +6,8 @@ import OnboardingScreenPagination from "../components/onboarding/OnboardingScree
 import Button from "../components/common/buttons/Button";
 import { ButtonType } from "../enums/ButtonTypes.enum";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useDispatch } from "react-redux";
+import { nextIndex, previousIndex } from "../store/onboarding-slice";
 
 const pages: Page[] = [
   {
@@ -32,14 +34,32 @@ const pages: Page[] = [
 ];
 
 const OnboardingScreen = () => {
+  const dispatch = useDispatch();
+
+  const goToNextPage = () => {
+    dispatch(nextIndex());
+  };
+
+  const goToPreviousPage = () => {
+    dispatch(previousIndex());
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
       <View className="flex-1 bg-white dark:bg-dark-900">
         <OnboardingScreenImagesList pages={pages} />
         <OnboardingScreenPagination pages={pages} />
         <View className="flex-row justify-between mb-5">
-          <Button text="Skip" type={ButtonType.Secondary} />
-          <Button text="Next" type={ButtonType.Primary} />
+          <Button
+            text="Skip"
+            type={ButtonType.Secondary}
+            onClick={goToPreviousPage}
+          />
+          <Button
+            text="Next"
+            type={ButtonType.Primary}
+            onClick={goToNextPage}
+          />
         </View>
       </View>
     </SafeAreaView>
