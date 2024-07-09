@@ -9,6 +9,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { changeIndex, nextIndex } from "../store/onboarding-slice";
 import { RootState } from "../store/store";
+import { useNavigation } from "@react-navigation/native";
 
 const pages: Page[] = [
   {
@@ -37,6 +38,11 @@ const pages: Page[] = [
 const OnboardingScreen = () => {
   const selectedIndex = useSelector((state: RootState) => state.onboarding);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+
+  const goToLoginScreen = () => {
+    navigation.navigate("LoginScreen");
+  };
 
   const goToNextPage = () => {
     dispatch(nextIndex());
@@ -54,20 +60,30 @@ const OnboardingScreen = () => {
 
         {selectedIndex == 2 ? (
           <View className="flex-row justify-between mb-5">
-            <Button
-              text="Get Started !"
-              type={ButtonType.Primary}
-              onClick={goToNextPage}
-            />
+            <View className="flex-1 mx-3">
+              <Button
+                text="Get Started !"
+                type={ButtonType.Primary}
+                onClick={goToLoginScreen}
+              />
+            </View>
           </View>
         ) : (
           <View className="flex-row justify-between mb-5">
-            <Button text="Skip" type={ButtonType.Secondary} onClick={onSkip} />
-            <Button
-              text="Next"
-              type={ButtonType.Primary}
-              onClick={goToNextPage}
-            />
+            <View className="flex-1 mx-3">
+              <Button
+                text="Skip"
+                type={ButtonType.Secondary}
+                onClick={onSkip}
+              />
+            </View>
+            <View className="flex-1 mx-3">
+              <Button
+                text="Next"
+                type={ButtonType.Primary}
+                onClick={goToNextPage}
+              />
+            </View>
           </View>
         )}
       </View>

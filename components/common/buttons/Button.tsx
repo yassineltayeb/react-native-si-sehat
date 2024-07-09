@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { ButtonType } from "../../../enums/ButtonTypes.enum";
 
@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({ text, type, onClick }) => {
     <TouchableOpacity
       onPress={onClick}
       activeOpacity={0.8}
-      className={`flex-1 rounded-md shadow-md mx-3 border ${containerStyle}`}
+      className={`flex-row items-center justify-center rounded-md shadow-md mb-4 border  ${containerStyle}`}
     >
       <Text className={`text-center text-sm font-bold px-4 py-2 ${textStyle}`}>
         {text}
