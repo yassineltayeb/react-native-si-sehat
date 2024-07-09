@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { useColorScheme } from "nativewind";
 import { useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const { colorScheme, toggleColorScheme, setColorScheme } = useColorScheme();
@@ -16,10 +17,12 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
-        <StatusBar style={colorScheme == "dark" ? "light" : "dark"} />
-        <StackNavigation />
-      </SafeAreaView>
+      <NavigationContainer>
+        <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
+          <StatusBar style={colorScheme == "dark" ? "light" : "dark"} />
+          <StackNavigation />
+        </SafeAreaView>
+      </NavigationContainer>
     </Provider>
   );
 }

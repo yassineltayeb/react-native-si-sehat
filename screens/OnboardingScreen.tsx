@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeIndex, nextIndex } from "../store/onboarding-slice";
 import { RootState } from "../store/store";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const pages: Page[] = [
   {
@@ -40,8 +41,13 @@ const OnboardingScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const goToLoginScreen = () => {
-    navigation.navigate("LoginScreen");
+  const goToLoginScreen = async () => {
+    try {
+      await AsyncStorage.setItem("isFirstLaunch", "false");
+      navigation.navigate("LoginScreen");
+    } catch (e) {
+      console.log("Error while saving to local storage");
+    }
   };
 
   const goToNextPage = () => {
