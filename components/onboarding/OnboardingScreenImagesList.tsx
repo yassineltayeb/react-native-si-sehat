@@ -11,6 +11,8 @@ import { Page } from "../../models/onboarding/page.model";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
 import { changeIndex } from "../../store/onboarding-slice";
+import Title from "../common/labels/Title";
+import SubTitle from "../common/labels/SubTitle";
 
 const { width } = Dimensions.get("window");
 
@@ -59,12 +61,8 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
       <View className="flex-1 w-screen">
         <Image className="h-screen/2 w-screen" source={page.image} />
         <View className="py-6 px-4">
-          <Text className="font-bold text-2xl text-typography-800 dark:text-gray-50">
-            {page.title}
-          </Text>
-          <Text className="font-medium text-md text-typography-800 dark:text-gray-50">
-            {page.subTitle}
-          </Text>
+          <Title title={page.title} />
+          <SubTitle title={page.subTitle} />
         </View>
       </View>
     );
