@@ -32,14 +32,10 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
 
   useEffect(() => {
     if (flatListRef.current) {
-      if (selectedIndex === 2) {
-        flatListRef.current.scrollToEnd({ animated: true });
-      } else {
-        flatListRef.current.scrollToIndex({
-          animated: true,
-          index: selectedIndex,
-        });
-      }
+      flatListRef.current.scrollToIndex({
+        animated: true,
+        index: selectedIndex,
+      });
     }
   }, [selectedIndex]);
 
