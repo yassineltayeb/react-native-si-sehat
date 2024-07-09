@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 import { Page } from "../models/onboarding/page.model";
 import OnboardingScreenImagesList from "../components/onboarding/OnboardingScreenImagesList";
@@ -6,11 +6,9 @@ import OnboardingScreenPagination from "../components/onboarding/OnboardingScree
 import Button from "../components/common/buttons/Button";
 import { ButtonType } from "../enums/ButtonTypes.enum";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useDispatch } from "react-redux";
-import {
-  changeIndex,
-  nextIndex,
-} from "../store/onboarding-slice";
+import { useDispatch, useSelector } from "react-redux";
+import { changeIndex, nextIndex } from "../store/onboarding-slice";
+import { RootState } from "../store/store";
 
 const pages: Page[] = [
   {
@@ -37,6 +35,7 @@ const pages: Page[] = [
 ];
 
 const OnboardingScreen = () => {
+  const selectedIndex = useSelector((state: RootState) => state.onboarding);
   const dispatch = useDispatch();
 
   const goToNextPage = () => {
@@ -52,14 +51,25 @@ const OnboardingScreen = () => {
       <View className="flex-1 bg-white dark:bg-dark-900">
         <OnboardingScreenImagesList pages={pages} />
         <OnboardingScreenPagination pages={pages} />
-        <View className="flex-row justify-between mb-5">
-          <Button text="Skip" type={ButtonType.Secondary} onClick={onSkip} />
-          <Button
-            text="Next"
-            type={ButtonType.Primary}
-            onClick={goToNextPage}
-          />
-        </View>
+
+        {selectedIndex == 2 ? (
+          <View className="flex-row justify-between mb-5">
+            <Button
+              text="Get Started !"
+              type={ButtonType.Primary}
+              onClick={goToNextPage}
+            />
+          </View>
+        ) : (
+          <View className="flex-row justify-between mb-5">
+            <Button text="Skip" type={ButtonType.Secondary} onClick={onSkip} />
+            <Button
+              text="Next"
+              type={ButtonType.Primary}
+              onClick={goToNextPage}
+            />
+          </View>
+        )}
       </View>
     </SafeAreaView>
   );

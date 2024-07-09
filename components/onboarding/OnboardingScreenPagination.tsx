@@ -4,26 +4,25 @@ import { Page } from "../../models/onboarding/page.model";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 interface OnboardingScreenPaginationProps {
   pages: Page[];
 }
 
-const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
-  pages,
-}) => {
+const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({ pages }) => {
   const selectedIndex = useSelector((state: RootState) => state.onboarding);
-
   const flatListRef = useRef<FlatList<Page>>(null);
+  const isScrollingRef = useRef(false);
 
   useEffect(() => {
-    if (flatListRef.current) {
+    if (flatListRef.current && !isScrollingRef.current) {
       flatListRef.current.scrollToIndex({
         animated: true,
         index: selectedIndex,
       });
     }
+    isScrollingRef.current = false;
   }, [selectedIndex]);
 
   const OnboardingScreenPage = ({ index }: { index: number }) => {
@@ -32,9 +31,7 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
       <View className="flex-row my-6">
         <View
           className={`w-[42.33px] h-[4px] rounded-full mr-3 ${
-            isSelected
-              ? "bg-primary-500 dark:bg-primary-400"
-              : "bg-gray-200 dark:bg-dark-600"
+            isSelected ? "bg-primary-500 dark:bg-primary-400" : "bg-gray-200 dark:bg-dark-600"
           }`}
         ></View>
       </View>
@@ -57,6 +54,9 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
         offset: width * index,
         index,
       })}
+      onScrollBeginDrag={() => {
+        isScrollingRef.current = true;
+      }}
     />
   );
 };

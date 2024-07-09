@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   View,
   Text,
@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
 import { changeIndex } from "../../store/onboarding-slice";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 interface OnboardingScreenImagesListProps {
   pages: Page[];
@@ -23,31 +23,36 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
 }) => {
   const selectedIndex = useSelector((state: RootState) => state.onboarding);
   const dispatch = useDispatch();
-
   const flatListRef = useRef<FlatList<Page>>(null);
+  const viewableItemsChangedRef =
+    useRef<(info: { viewableItems: ViewToken[] }) => void>();
 
-  
+  // Keep track of scrolling to avoid unnecessary dispatches
+  const isScrollingRef = useRef(false);
 
   useEffect(() => {
-    if (flatListRef.current) {
+    if (flatListRef.current && !isScrollingRef.current) {
       flatListRef.current.scrollToIndex({
         animated: true,
         index: selectedIndex,
       });
     }
+    isScrollingRef.current = false;
   }, [selectedIndex]);
 
-  const onViewableItemsChanged = useCallback(
-    ({ viewableItems }: { viewableItems: ViewToken[] }) => {
-      if (viewableItems.length > 0) {
-        const index = viewableItems[0].index;
-        if (index !== null && index !== undefined) {
-          dispatch(changeIndex(index));
-        }
+  viewableItemsChangedRef.current = ({
+    viewableItems,
+  }: {
+    viewableItems: ViewToken[];
+  }) => {
+    if (viewableItems.length > 0) {
+      const index = viewableItems[0].index;
+      if (index !== null && index !== undefined && index !== selectedIndex) {
+        isScrollingRef.current = true;
+        dispatch(changeIndex(index));
       }
-    },
-    [dispatch]
-  );
+    }
+  };
 
   const OnboardingScreenImage = ({ page }: { page: Page }) => {
     return (
@@ -57,7 +62,7 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
           <Text className="font-bold text-2xl text-typography-800 dark:text-gray-50">
             {page.title}
           </Text>
-          <Text className="font-medium text-md  text-typography-800  dark:text-gray-50">
+          <Text className="font-medium text-md text-typography-800 dark:text-gray-50">
             {page.subTitle}
           </Text>
         </View>
@@ -76,7 +81,7 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
         pagingEnabled
         initialScrollIndex={0}
         showsHorizontalScrollIndicator={false}
-        onViewableItemsChanged={onViewableItemsChanged}
+        onViewableItemsChanged={viewableItemsChangedRef.current}
         getItemLayout={(data, index) => ({
           length: width,
           offset: width * index,
