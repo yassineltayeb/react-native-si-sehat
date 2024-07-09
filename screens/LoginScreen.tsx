@@ -6,22 +6,23 @@ import SubTitle from "../components/common/labels/SubTitle";
 import Button from "../components/common/buttons/Button";
 import { ButtonType } from "../enums/ButtonTypes.enum";
 import ButtonIcon from "../components/common/buttons/ButtonIcon";
+import ButtonLabel from "../components/common/buttons/ButtonLabel";
 
 const LoginScreen = () => {
   return (
-    <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
-      <Image
-        className="h-screen/2 w-screen"
-        resizeMode="stretch"
-        source={require("../assets/login/login.png")}
-      />
-      <View className="flex-1 px-3 mt-5">
-        {/* Titles */}
-        <Title title="Si - Sehat" />
-        <SubTitle title="Begin your journey to better health!" />
-        <View className="flex-1">
+    <SafeAreaView className="flex-1 bg-white dark:bg-dark-900 items-center">
+      <View className="flex-1">
+        <Image
+          className="h-screen/2 w-screen"
+          resizeMode="stretch"
+          source={require("../assets/login/login.png")}
+        />
+        <View className="flex-1 px-3 mt-5">
+          {/* Titles */}
+          <Title title="Si - Sehat" />
+          <SubTitle title="Begin your journey to better health!" />
           {/* Buttons */}
-          <View className="flex-1 mt-10">
+          <View className="mt-10">
             <Button
               text="Continue With Phone Number"
               type={ButtonType.Primary}
@@ -39,6 +40,18 @@ const LoginScreen = () => {
               onClick={() => {}}
             />
           </View>
+          <View className="flex-row items-center justify-center">
+            <SubTitle title="Already have an account?" />
+            <ButtonLabel text="Sign In" />
+          </View>
+        </View>
+      </View>
+      <View className="justify-center item-center mb-5">
+        <SubTitle title="By signing up or logging in, I accept the apps " />
+        <View className="flex-row justify-center items-center">
+          <ButtonLabel text="Terms of Service" />
+          <SubTitle title=" and " />
+          <ButtonLabel text="Privacy Policy" />
         </View>
       </View>
     </SafeAreaView>

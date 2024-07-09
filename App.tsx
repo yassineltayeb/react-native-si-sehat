@@ -11,7 +11,7 @@ export default function App() {
   const { colorScheme, toggleColorScheme, setColorScheme } = useColorScheme();
 
   useEffect(() => {
-    setColorScheme("light");
+    setColorScheme("dark");
   }, []);
 
   return (
