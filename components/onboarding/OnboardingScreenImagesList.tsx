@@ -26,9 +26,7 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
 
   const flatListRef = useRef<FlatList<Page>>(null);
 
-  const viewabilityConfig = {
-    itemVisiblePercentThreshold: 50,
-  };
+  
 
   useEffect(() => {
     if (flatListRef.current) {
@@ -79,7 +77,6 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
         initialScrollIndex={0}
         showsHorizontalScrollIndicator={false}
         onViewableItemsChanged={onViewableItemsChanged}
-        viewabilityConfig={viewabilityConfig}
         getItemLayout={(data, index) => ({
           length: width,
           offset: width * index,
