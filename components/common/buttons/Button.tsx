@@ -22,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({ text, type, onClick }) => {
   return (
     <TouchableOpacity
       onPress={onClick}
+      activeOpacity={0.8}
       className={`flex-1 rounded-md shadow-md mx-3 border ${containerStyle}`}
     >
       <Text className={`text-center text-sm font-bold px-4 py-2 ${textStyle}`}>

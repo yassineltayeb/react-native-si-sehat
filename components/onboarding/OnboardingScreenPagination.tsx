@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { View, Dimensions, FlatList } from "react-native";
 import { Page } from "../../models/onboarding/page.model";
 import { useSelector } from "react-redux";
@@ -14,6 +14,21 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
   pages,
 }) => {
   const selectedIndex = useSelector((state: RootState) => state.onboarding);
+
+  const flatListRef = useRef<FlatList<Page>>(null);
+
+  useEffect(() => {
+    if (flatListRef.current) {
+      if (selectedIndex === 2) {
+        flatListRef.current.scrollToEnd({ animated: true });
+      } else {
+        flatListRef.current.scrollToIndex({
+          animated: true,
+          index: selectedIndex,
+        });
+      }
+    }
+  }, [selectedIndex]);
 
   const OnboardingScreenPage = ({ index }: { index: number }) => {
     const isSelected = index === selectedIndex;
@@ -32,6 +47,7 @@ const OnboardingScreenPagination: React.FC<OnboardingScreenPaginationProps> = ({
 
   return (
     <FlatList
+      ref={flatListRef}
       className="mx-5"
       data={pages}
       renderItem={({ item, index }) => <OnboardingScreenPage index={index} />}

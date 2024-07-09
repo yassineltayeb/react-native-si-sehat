@@ -7,11 +7,10 @@ export const onboardingSlice = createSlice({
   initialState,
   reducers: {
     changeIndex(state, action: PayloadAction<number>) {
-      state = action.payload ?? initialState;
+      state = action.payload;
       return state;
     },
     nextIndex(state) {
-      console.log(state);
       if (state < 2) {
         return state + 1;
       }
@@ -19,7 +18,6 @@ export const onboardingSlice = createSlice({
       return state;
     },
     previousIndex(state) {
-      console.log(state);
       if (state > 0) {
         return state - 1;
       }

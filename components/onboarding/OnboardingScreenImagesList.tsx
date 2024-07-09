@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import {
   View,
   Text,
@@ -32,24 +32,28 @@ const OnboardingScreenImagesList: React.FC<OnboardingScreenImagesListProps> = ({
 
   useEffect(() => {
     if (flatListRef.current) {
-      flatListRef.current.scrollToIndex({
-        animated: true,
-        index: selectedIndex,
-      });
+      if (selectedIndex === 2) {
+        flatListRef.current.scrollToEnd({ animated: true });
+      } else {
+        flatListRef.current.scrollToIndex({
+          animated: true,
+          index: selectedIndex,
+        });
+      }
     }
   }, [selectedIndex]);
 
-  const onViewableItemsChanged = useRef(
+  const onViewableItemsChanged = useCallback(
     ({ viewableItems }: { viewableItems: ViewToken[] }) => {
       if (viewableItems.length > 0) {
         const index = viewableItems[0].index;
-        // console.log("index 1", index);
         if (index !== null && index !== undefined) {
           dispatch(changeIndex(index));
         }
       }
-    }
-  ).current;
+    },
+    [dispatch]
+  );
 
   const OnboardingScreenImage = ({ page }: { page: Page }) => {
     return (
