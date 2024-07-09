@@ -7,8 +7,15 @@ import Button from "../components/common/buttons/Button";
 import { ButtonType } from "../enums/ButtonTypes.enum";
 import ButtonIcon from "../components/common/buttons/ButtonIcon";
 import ButtonLabel from "../components/common/buttons/ButtonLabel";
+import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = () => {
+  const navigation = useNavigation();
+
+  const continueWithPhoneNumber = () => {
+    navigation.navigate("RegisterScreen");
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white dark:bg-dark-900 items-center">
       <View className="flex-1">
@@ -26,6 +33,7 @@ const LoginScreen = () => {
             <Button
               text="Continue With Phone Number"
               type={ButtonType.Primary}
+              onClick={continueWithPhoneNumber}
             />
             <ButtonIcon
               text="Continue with Google"
