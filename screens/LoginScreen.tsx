@@ -8,6 +8,7 @@ import { ButtonType } from "../enums/ButtonTypes.enum";
 import ButtonIcon from "../components/common/buttons/ButtonIcon";
 import ButtonLabel from "../components/common/buttons/ButtonLabel";
 import { useNavigation } from "@react-navigation/native";
+import TermsAndCondition from "../components/common/shared/TermsAndCondition";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -54,14 +55,7 @@ const LoginScreen = () => {
           </View>
         </View>
       </View>
-      <View className="justify-center item-center mb-5">
-        <SubTitle title="By signing up or logging in, I accept the apps " />
-        <View className="flex-row justify-center items-center">
-          <ButtonLabel text="Terms of Service" />
-          <SubTitle title=" and " />
-          <ButtonLabel text="Privacy Policy" />
-        </View>
-      </View>
+      <TermsAndCondition />
     </SafeAreaView>
   );
 };
