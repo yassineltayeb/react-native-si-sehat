@@ -32,9 +32,12 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
       flagButtonStyle={styles.flagButtonStyle}
       textInputStyle={styles.textInputStyle}
       textContainerStyle={styles.textContainerStyle}
-      textInputProps={{ style: styles.textInputStyle }}
+      textInputProps={{
+        style: styles.textInputStyle,
+        placeholderTextColor: "#A1A1AA",
+      }}
       renderDropdownImage={
-        <Ionicons name="chevron-down" size={16} color="#A1A1AA" />
+        <Ionicons name="chevron-down" size={16} color="#FDFDFD" />
       }
       placeholder="Enter phone number"
       onChangeText={handleTextChange}
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   countryPickerButtonStyle: {} as ViewStyle,
   codeTextStyle: {
-    color: "#A1A1AA",
+    color: "#FDFDFD",
     fontWeight: "500",
     fontSize: 16,
   },
@@ -63,7 +66,7 @@ const styles = StyleSheet.create({
   textInputStyle: {
     fontWeight: "500",
     fontSize: 14,
-    color: "#A1A1AA",
+    color: "#FDFDFD",
     marginTop: 1,
   },
   textContainerStyle: {
