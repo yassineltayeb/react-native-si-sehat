@@ -14,7 +14,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 
   const handleTextChange = (text: string) => {
     const code = phoneInputRef.current?.state.code;
-    onChangeText(`${code}${text}`);
+    onChangeText(`+${code}${text}`);
   };
 
   return (

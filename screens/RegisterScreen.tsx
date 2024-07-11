@@ -10,7 +10,7 @@ const RegisterScreen = () => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const onPhoneNumberInputChanged = (value: string) => {
     setPhoneNumber(value);
-    if (value.length == 12) {
+    if (value.length == 13) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true)
