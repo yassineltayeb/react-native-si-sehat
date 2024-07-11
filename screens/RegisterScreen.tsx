@@ -7,8 +7,14 @@ import TermsAndConditionWithButton from "../components/common/shared/TermsAndCon
 
 const RegisterScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const onPhoneNumberInputChanged = (value: string) => {
     setPhoneNumber(value);
+    if (value.length == 12) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true)
+    }
   };
 
   const handelContinue = () => {
@@ -23,7 +29,10 @@ const RegisterScreen = () => {
           <SubTitle title="Please enter your number to continue your registration" />
           <PhoneNumberInput onChangeText={onPhoneNumberInputChanged} />
         </View>
-        <TermsAndConditionWithButton onClick={handelContinue} />
+        <TermsAndConditionWithButton
+          onClick={handelContinue}
+          buttonDisabled={buttonDisabled}
+        />
       </View>
     </View>
   );

@@ -5,15 +5,21 @@ import Button from "../buttons/Button";
 import TermsAndCondition from "./TermsAndCondition";
 
 interface TermsAndConditionWithButtonProps {
+  buttonDisabled?: boolean;
   onClick: any;
 }
 
 const TermsAndConditionWithButton: React.FC<
   TermsAndConditionWithButtonProps
-> = ({ onClick }) => {
+> = ({ buttonDisabled, onClick }) => {
   return (
     <View>
-      <Button text="Continue" type={ButtonType.Primary} onClick={onClick} />
+      <Button
+        text="Continue"
+        type={ButtonType.Primary}
+        onClick={onClick}
+        disabled={buttonDisabled}
+      />
       <TermsAndCondition />
     </View>
   );
