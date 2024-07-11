@@ -7,7 +7,7 @@ interface SubTitleProps {
 
 const SubTitle: React.FC<SubTitleProps> = ({ title }) => {
   return (
-    <Text className="font-medium text-center text-md text-typography-800 dark:text-gray-50">
+    <Text className="font-medium text-md text-typography-800 dark:text-gray-50">
       {title}
     </Text>
   );

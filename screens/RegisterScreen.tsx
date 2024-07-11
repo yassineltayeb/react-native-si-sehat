@@ -4,8 +4,10 @@ import Title from "../components/common/labels/Title";
 import SubTitle from "../components/common/labels/SubTitle";
 import PhoneNumberInput from "../components/common/inputs/PhoneNumberInput";
 import TermsAndConditionWithButton from "../components/common/shared/TermsAndConditionWithButton";
+import { useNavigation } from "@react-navigation/native";
 
 const RegisterScreen = () => {
+  const navigation = useNavigation();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const onPhoneNumberInputChanged = (value: string) => {
@@ -13,12 +15,12 @@ const RegisterScreen = () => {
     if (value.length == 13) {
       setButtonDisabled(false);
     } else {
-      setButtonDisabled(true)
+      setButtonDisabled(true);
     }
   };
 
   const handelContinue = () => {
-    console.log("phoneNumber", phoneNumber);
+    navigation.navigate("OTPCodeScreen", { phoneNumber });
   };
 
   return (

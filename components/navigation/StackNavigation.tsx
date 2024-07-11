@@ -8,6 +8,7 @@ import * as SplashScreen from "expo-splash-screen";
 import RegisterScreen from "../../screens/RegisterScreen";
 import { useColorScheme } from "nativewind";
 import { ColorScheme } from "../../enums/ColorScheme.enum";
+import OTPCodeScreen from "../../screens/OTPCodeScreen";
 
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
@@ -40,14 +41,33 @@ const StackNavigation = () => {
   }
 
   return (
-    <Stack.Navigator>
-      {isFirstLaunch ? (
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor:
+          colorScheme === ColorScheme.Light ? "#1D2939" : "#F3F4F6",
+        headerStyle: {
+          backgroundColor:
+            colorScheme === ColorScheme.Light ? "white" : "#101828",
+          borderBottomWidth: 1,
+          borderBottomColor:
+            colorScheme === ColorScheme.Light ? "#F3F4F6" : "#1D2939",
+          shadowOpacity: 0,
+          shadowColor: "transparent",
+          shadowRadius: 0,
+          elevation: 0,
+        },
+        headerTitleContainerStyle: {
+          marginTop: 0,
+        },
+      }}
+    >
+      {isFirstLaunch && (
         <Stack.Screen
           name="OnboardingScreen"
           component={OnboardingScreen}
           options={{ headerShown: false }}
         />
-      ) : null}
+      )}
       <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
@@ -60,22 +80,15 @@ const StackNavigation = () => {
           title: "",
           headerTitle: "",
           headerBackTitleVisible: false,
-          headerTintColor:
-            colorScheme === ColorScheme.Light ? "#1D2939" : "#F3F4F6",
-          headerStyle: {
-            backgroundColor:
-              colorScheme === ColorScheme.Light ? "white" : "#101828",
-            borderBottomWidth: 1,
-            borderBottomColor:
-              colorScheme === ColorScheme.Light ? "#F3F4F6" : "#1D2939",
-            shadowOpacity: 0,
-            shadowColor: "transparent",
-            shadowRadius: 0,
-            elevation: 0,
-          },
-          headerTitleContainerStyle: {
-            marginTop: 0,
-          },
+        }}
+      />
+      <Stack.Screen
+        name="OTPCodeScreen"
+        component={OTPCodeScreen}
+        options={{
+          title: "",
+          headerTitle: "",
+          headerBackTitleVisible: false,
         }}
       />
     </Stack.Navigator>
