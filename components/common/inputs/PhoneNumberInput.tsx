@@ -11,15 +11,10 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   onChangeText,
 }) => {
   const phoneInputRef = useRef<PhoneInput>(null);
-  const [formattedNumber, setFormattedNumber] = useState("");
 
   const handleTextChange = (text: string) => {
-    if (phoneInputRef.current) {
-      const number =
-        phoneInputRef.current.getNumberAfterPossiblyEliminatingZero();
-      setFormattedNumber(number.formattedNumber);
-      onChangeText(number.formattedNumber);
-    }
+    const code = phoneInputRef.current?.state.code;
+    onChangeText(`${code}${text}`);
   };
 
   return (

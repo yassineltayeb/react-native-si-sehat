@@ -4,10 +4,16 @@ import { ButtonType } from "../../../enums/ButtonTypes.enum";
 import Button from "../buttons/Button";
 import TermsAndCondition from "./TermsAndCondition";
 
-const TermsAndConditionWithButton = () => {
+interface TermsAndConditionWithButtonProps {
+  onClick: any;
+}
+
+const TermsAndConditionWithButton: React.FC<
+  TermsAndConditionWithButtonProps
+> = ({ onClick }) => {
   return (
     <View>
-      <Button text="Continue" type={ButtonType.Primary} onClick={() => {}} />
+      <Button text="Continue" type={ButtonType.Primary} onClick={onClick} />
       <TermsAndCondition />
     </View>
   );

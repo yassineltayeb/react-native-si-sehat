@@ -1,13 +1,18 @@
 import { View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Title from "../components/common/labels/Title";
 import SubTitle from "../components/common/labels/SubTitle";
 import PhoneNumberInput from "../components/common/inputs/PhoneNumberInput";
 import TermsAndConditionWithButton from "../components/common/shared/TermsAndConditionWithButton";
 
 const RegisterScreen = () => {
+  const [phoneNumber, setPhoneNumber] = useState("");
   const onPhoneNumberInputChanged = (value: string) => {
-    console.log(value);
+    setPhoneNumber(value);
+  };
+
+  const handelContinue = () => {
+    console.log("phoneNumber", phoneNumber);
   };
 
   return (
@@ -18,7 +23,7 @@ const RegisterScreen = () => {
           <SubTitle title="Please enter your number to continue your registration" />
           <PhoneNumberInput onChangeText={onPhoneNumberInputChanged} />
         </View>
-        <TermsAndConditionWithButton />
+        <TermsAndConditionWithButton onClick={handelContinue} />
       </View>
     </View>
   );
