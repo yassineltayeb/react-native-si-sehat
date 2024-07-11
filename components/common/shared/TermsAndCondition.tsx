@@ -5,7 +5,7 @@ import SubTitle from "../labels/SubTitle";
 
 const TermsAndCondition = () => {
   return (
-    <View className="justify-center item-center mb-5">
+    <View className="justify-center items-center item-center mb-5">
       <SubTitle title="By signing up or logging in, I accept the apps " />
       <View className="flex-row justify-center items-center">
         <ButtonLabel text="Terms of Service" />
