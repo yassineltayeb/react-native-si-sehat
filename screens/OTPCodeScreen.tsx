@@ -5,10 +5,12 @@ import SubTitle from "../components/common/labels/SubTitle";
 import TermsAndConditionWithButton from "../components/common/shared/TermsAndConditionWithButton";
 import { useRoute } from "@react-navigation/native";
 import { OTPCodeScreenRouteProp } from "../types/route-params";
+import OTPCodeInput from "../components/common/inputs/OTPCodeInput";
 
 const OTPCodeScreen = () => {
   const route = useRoute<OTPCodeScreenRouteProp>();
   const { phoneNumber } = route.params;
+
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const handelContinue = () => {};
@@ -21,6 +23,7 @@ const OTPCodeScreen = () => {
           <SubTitle
             title={`Enter the 6-digit that we have sent via the phone number to ${phoneNumber}`}
           />
+        <OTPCodeInput />
         </View>
         <TermsAndConditionWithButton
           onClick={handelContinue}
