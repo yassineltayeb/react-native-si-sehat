@@ -14,12 +14,12 @@ export default function App() {
   const { colorScheme, toggleColorScheme, setColorScheme } = useColorScheme();
 
   useEffect(() => {
-    setColorScheme("light");
+    setColorScheme("dark"); 
   }, []);
-
+  
   useDeviceContext(tw, {
     observeDeviceColorSchemeChanges: false,
-    initialColorScheme: "light",
+    initialColorScheme: "dark",
   },);
 
   return (
