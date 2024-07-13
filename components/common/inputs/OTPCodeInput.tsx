@@ -1,43 +1,29 @@
 import { useColorScheme } from "nativewind";
-import React from "react";
-import { StyleSheet, ViewStyle } from "react-native";
+import React, { useEffect } from "react";
+import { View } from "react-native";
 import OTPTextView from "react-native-otp-textinput";
 import { ColorScheme } from "../../../enums/ColorScheme.enum";
+import tw from "../../../lib/tailwind";
 
 const OTPCodeInput = () => {
   const { colorScheme } = useColorScheme();
 
   const textInputColorScheme = {
-    color: colorScheme === ColorScheme.Light ? "#18181B" : "#FDFDFD",
-    backgroundColor: colorScheme === ColorScheme.Light ? "#FDFDFD" : "#1D2939",
     borderColor: colorScheme === ColorScheme.Light ? "#D2D6DB" : "#475467",
   };
 
   return (
-    <OTPTextView
-      inputCount={6}
-      tintColor={colorScheme === ColorScheme.Light ? "#254EDB" : "#254EDB"}
-      offTintColor={colorScheme === ColorScheme.Light ? "#D2D6DB" : "#475467"}
-      containerStyle={styles.containerStyle}
-      textInputStyle={StyleSheet.flatten([
-        styles.textInputStyle,
-        textInputColorScheme,
-      ])}
-      autoFocus={true}
-      secureTextEntry={true}
-    />
+    <View className="border-1">
+      <OTPTextView
+        inputCount={6}
+        tintColor={"#254EDB"}
+        offTintColor={colorScheme === ColorScheme.Light ? "#D2D6DB" : "#475467"}
+        textInputStyle={tw`font-bold text-base border-4 rounded-xl text-typography-900 dark:text-typography-100 bg-[#FDFDFD] dark:bg-dark-800 border-typography-50 dark:border-[#475467]`}
+        autoFocus={true}
+        secureTextEntry={true}
+      />
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  containerStyle: {} as ViewStyle,
-  textInputStyle: {
-    fontWeight: "700",
-    fontSize: 16,
-    borderWidth: 4,
-    borderRadius: 12,
-    secureTextEntry: true,
-  } as ViewStyle,
-});
 
 export default OTPCodeInput;
