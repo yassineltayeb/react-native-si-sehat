@@ -27,7 +27,7 @@ export default function App() {
       <NavigationContainer>
         <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
           <StatusBar style={colorScheme == "dark" ? "light" : "dark"} />
-          <StackNavigation />
+          {/* <StackNavigation /> */}
         </SafeAreaView>
       </NavigationContainer>
     </Provider>
