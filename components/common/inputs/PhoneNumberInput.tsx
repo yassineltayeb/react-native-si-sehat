@@ -24,7 +24,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
     <PhoneInput
       ref={phoneInputRef}
       defaultCode="AE"
-      containerStyle={tw`justify-center items-center bg-[white] border border-[#475467] rounded-xl my-2 w-full dark:bg-[#020E22]`}
+      containerStyle={tw`justify-center items-center bg-[white] border border-gray-400 dark:border-dark-500 rounded-xl my-2 w-full dark:bg-[#020E22]`}
       codeTextStyle={tw`text-typography-900 dark:text-[#FDFDFD] font-medium text-base`}
       textContainerStyle={tw`bg-white dark:bg-[#020E22] rounded-xl`}
       textInputStyle={tw`font-medium text-sm text-typography-900 dark:text-[#FDFDFD] mt-0.5`}

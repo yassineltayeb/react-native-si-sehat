@@ -15,20 +15,19 @@ export default function App() {
   const { colorScheme, toggleColorScheme, setColorScheme } = useColorScheme();
 
   useEffect(() => {
-    setColorScheme("dark");
+    setColorScheme("light");
   }, []);
 
   useDeviceContext(tw, {
     observeDeviceColorSchemeChanges: false,
-    initialColorScheme: "dark",
+    initialColorScheme: "light",
   });
-
 
   return (
     <Provider store={store}>
       <NavigationContainer>
         <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
-          {/* <StatusBar style={colorScheme == "dark" ? "light" : "dark"} /> */}
+          <StatusBar style={colorScheme == "dark" ? "light" : "dark"} />
           <StackNavigation />
         </SafeAreaView>
       </NavigationContainer>
