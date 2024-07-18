@@ -10,19 +10,22 @@ import TextFieldInput from "../components/common/inputs/TextFieldInput";
 import Button from "../components/common/buttons/Button";
 import { ButtonType } from "../enums/ButtonTypes.enum";
 import ButtonLabel from "../components/common/buttons/ButtonLabel";
+import PasswordChecker from "../components/common/shared/PasswordChecker";
 
 const UserRegisterScreen = () => {
   const navigation = useNavigation();
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const onPhoneNumberInputChanged = (value: string) => {
-    setPhoneNumber(value);
-    setButtonDisabled(value.length !== 13);
+  const onPasswordInputChanged = (value: string) => {
+    setPassword(value);
   };
 
   const handleContinue = () => {
-    navigation.navigate("OTPCodeScreen", { phoneNumber });
+    navigation.navigate("OTPCodeScreen", {});
   };
 
   return (
@@ -46,7 +49,9 @@ const UserRegisterScreen = () => {
                 label="Password"
                 placeholder="Enter your password"
                 secure
+                onChangeText={onPasswordInputChanged}
               />
+              <PasswordChecker password={password} />
               {/* Confirm Password */}
               <TextFieldInput
                 label="Confirm Password"
@@ -56,8 +61,12 @@ const UserRegisterScreen = () => {
             </View>
           </View>
           <View>
-            <Button text="Sign up" type={ButtonType.Primary} />
-            <View className="mb-4">
+            <Button
+              text="Sign up"
+              type={ButtonType.Primary}
+              disabled={buttonDisabled}
+            />
+            <View className="mb-10">
               <ButtonLabel text="I have an account? Sign in" />
             </View>
           </View>
