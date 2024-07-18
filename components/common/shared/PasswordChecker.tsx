@@ -69,7 +69,7 @@ const PasswordChecker: React.FC<PasswordCheckerProps> = ({ password }) => {
       <Text className={`text-sm font-medium ${getTextClass()}`}>
         {passwordComplexity}
       </Text>
-      <View className="flex-row">{password.length >0 &&renderPasswordBars()}</View>
+      <View className="flex-row">{renderPasswordBars()}</View>
     </View>
   );
 };
