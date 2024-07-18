@@ -1,11 +1,16 @@
 import { View, Text } from "react-native";
 import React, { useState, useEffect } from "react";
+import { PasswordComplexity } from "../../../enums/PasswordComplexity.enum";
 
 interface PasswordCheckerProps {
   password: string;
+  onPasswordComplexityChange: (complexity: string) => void;
 }
 
-const PasswordChecker: React.FC<PasswordCheckerProps> = ({ password }) => {
+const PasswordChecker: React.FC<PasswordCheckerProps> = ({
+  password,
+  onPasswordComplexityChange,
+}) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [passwordComplexity, setPasswordComplexity] = useState("");
 
@@ -16,31 +21,34 @@ const PasswordChecker: React.FC<PasswordCheckerProps> = ({ password }) => {
       const hasNumber = /\d/.test(password);
       const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
+      let complexity = "";
       if (password.length > 0) {
         if (password.length < 6) {
           setSelectedIndex(0);
-          setPasswordComplexity("Weak");
+          complexity = PasswordComplexity.Weak;
         } else if (password.length < 10) {
           if (hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar) {
             setSelectedIndex(2);
-            setPasswordComplexity("Very Strong");
+            complexity = PasswordComplexity.VeryStrong;
           } else {
             setSelectedIndex(1);
-            setPasswordComplexity("Strong");
+            complexity = PasswordComplexity.Strong;
           }
         } else {
           if (hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar) {
             setSelectedIndex(2);
-            setPasswordComplexity("Very Strong");
+            complexity = PasswordComplexity.VeryStrong;
           } else {
             setSelectedIndex(1);
-            setPasswordComplexity("Strong");
+            complexity = PasswordComplexity.Strong;
           }
         }
       }
+      setPasswordComplexity(complexity);
+      onPasswordComplexityChange(complexity);
     };
     calculatePasswordComplexity(password);
-  }, [password]);
+  }, [password, onPasswordComplexityChange]);
 
   const getTextClass = () => {
     if (selectedIndex === 0) {
