@@ -1,4 +1,4 @@
-import { View, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { View } from "react-native";
 import React, { useState } from "react";
 import Title from "../components/common/labels/Title";
 import SubTitle from "../components/common/labels/SubTitle";
@@ -7,7 +7,7 @@ import TermsAndConditionWithButton from "../components/common/shared/TermsAndCon
 import { useNavigation } from "@react-navigation/native";
 import KeyboardAvoiding from "../components/common/shared/KeyboardAvoiding";
 
-const RegisterScreen = () => {
+const PhoneNumberScreen = () => {
   const navigation = useNavigation();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -40,4 +40,4 @@ const RegisterScreen = () => {
   );
 };
 
-export default RegisterScreen;
+export default PhoneNumberScreen;

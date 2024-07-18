@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Title from "../components/common/labels/Title";
 import SubTitle from "../components/common/labels/SubTitle";
 import TermsAndConditionWithButton from "../components/common/shared/TermsAndConditionWithButton";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { OTPCodeScreenRouteProp } from "../types/route-params";
 import OTPCodeInput from "../components/common/inputs/OTPCodeInput";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -11,6 +11,7 @@ import KeyboardAvoiding from "../components/common/shared/KeyboardAvoiding";
 import ButtonLabel from "../components/common/buttons/ButtonLabel";
 
 const OTPCodeScreen = () => {
+  const navigation = useNavigation();
   const route = useRoute<OTPCodeScreenRouteProp>();
   const { phoneNumber } = route.params;
   const [otpCode, setOTPCode] = useState("");
@@ -37,7 +38,9 @@ const OTPCodeScreen = () => {
     setButtonDisabled(text.length !== 6);
   };
 
-  const handelContinue = () => {};
+  const handelContinue = () => {
+    navigation.navigate("UserRegisterScreen", {});
+  };
 
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);

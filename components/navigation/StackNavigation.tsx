@@ -5,10 +5,11 @@ import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
-import RegisterScreen from "../../screens/RegisterScreen";
+import PhoneNumberScreen from "../../screens/PhoneNumberScreen";
 import { useColorScheme } from "nativewind";
 import { ColorScheme } from "../../enums/ColorScheme.enum";
 import OTPCodeScreen from "../../screens/OTPCodeScreen";
+import UserRegisterScreen from "../../screens/UserRegisterScreen";
 
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
@@ -75,7 +76,7 @@ const StackNavigation = () => {
       />
       <Stack.Screen
         name="RegisterScreen"
-        component={RegisterScreen}
+        component={PhoneNumberScreen}
         options={{
           title: "",
           headerTitle: "",
@@ -85,6 +86,15 @@ const StackNavigation = () => {
       <Stack.Screen
         name="OTPCodeScreen"
         component={OTPCodeScreen}
+        options={{
+          title: "",
+          headerTitle: "",
+          headerBackTitleVisible: false,
+        }}
+      />
+       <Stack.Screen
+        name="UserRegisterScreen"
+        component={UserRegisterScreen}
         options={{
           title: "",
           headerTitle: "",
