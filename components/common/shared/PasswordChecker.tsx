@@ -11,16 +11,31 @@ const PasswordChecker: React.FC<PasswordCheckerProps> = ({ password }) => {
 
   useEffect(() => {
     const calculatePasswordComplexity = (password: string) => {
+      const hasUpperCase = /[A-Z]/.test(password);
+      const hasLowerCase = /[a-z]/.test(password);
+      const hasNumber = /\d/.test(password);
+      const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
       if (password.length > 0) {
         if (password.length < 6) {
           setSelectedIndex(0);
           setPasswordComplexity("Weak");
         } else if (password.length < 10) {
-          setSelectedIndex(1);
-          setPasswordComplexity("Strong");
+          if (hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar) {
+            setSelectedIndex(2);
+            setPasswordComplexity("Very Strong");
+          } else {
+            setSelectedIndex(1);
+            setPasswordComplexity("Strong");
+          }
         } else {
-          setSelectedIndex(2);
-          setPasswordComplexity("Very Strong");
+          if (hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar) {
+            setSelectedIndex(2);
+            setPasswordComplexity("Very Strong");
+          } else {
+            setSelectedIndex(1);
+            setPasswordComplexity("Strong");
+          }
         }
       }
     };
