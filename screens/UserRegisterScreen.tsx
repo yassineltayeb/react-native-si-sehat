@@ -16,10 +16,10 @@ import { PasswordComplexity } from "../enums/PasswordComplexity.enum";
 const UserRegisterScreen = () => {
   const navigation = useNavigation();
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [fullName, setFullName] = useState("Yassin Mohamed");
+  const [email, setEmail] = useState("yassineltayeb@live.com");
+  const [password, setPassword] = useState("A@a123");
+  const [confirmPassword, setConfirmPassword] = useState("A@a123");
   const [passwordComplexityChange, setPasswordComplexityChange] = useState("");
 
   const onFullNameInputChanged = (value: string) => setFullName(value);
@@ -48,7 +48,7 @@ const UserRegisterScreen = () => {
   }, [fullName, email, password, confirmPassword, passwordComplexityChange]);
 
   const handleContinue = () => {
-    navigation.navigate("OTPCodeScreen", {});
+    navigation.navigate("WelcomeScreen", { fullName: fullName });
   };
 
   return (

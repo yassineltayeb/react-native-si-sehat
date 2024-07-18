@@ -10,6 +10,7 @@ import { useColorScheme } from "nativewind";
 import { ColorScheme } from "../../enums/ColorScheme.enum";
 import OTPCodeScreen from "../../screens/OTPCodeScreen";
 import UserRegisterScreen from "../../screens/UserRegisterScreen";
+import WelcomeScreen from "../../screens/WelcomeScreen";
 
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
@@ -92,13 +93,20 @@ const StackNavigation = () => {
           headerBackTitleVisible: false,
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="UserRegisterScreen"
         component={UserRegisterScreen}
         options={{
           title: "",
           headerTitle: "",
           headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="WelcomeScreen"
+        component={WelcomeScreen}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
