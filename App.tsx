@@ -16,7 +16,7 @@ export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
-    setColorScheme("dark");
+    setColorScheme("light");
     async function loadFonts() {
       await Font.loadAsync({
         "Manrope-Bold": require("./assets/fonts/Manrope-Bold.ttf"),
@@ -33,14 +33,14 @@ export default function App() {
     loadFonts();
   }, []);
 
-  if (!fontsLoaded) {
-    return null;
-  }
-
   useDeviceContext(tw, {
     observeDeviceColorSchemeChanges: false,
     initialColorScheme: "light",
   });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <Provider store={store}>
