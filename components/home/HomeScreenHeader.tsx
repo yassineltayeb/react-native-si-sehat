@@ -5,7 +5,7 @@ import { ButtonType } from "../../enums/ButtonTypes.enum";
 
 const HomeScreenHeader = () => {
   return (
-    <View className="flex-row justify-between items-center">
+    <View className="flex-row justify-between items-center mt-4">
       <View className="flex-1">
         <Text className="flex-1 font-manrope-bold text-2xl text-typography-800 dark:text-gray-50">
           {`Hi Yassin Mohamed`}
