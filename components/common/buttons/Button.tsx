@@ -30,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({ text, type, disabled, onClick }) => {
       className={`flex-row items-center justify-center rounded-md shadow-md py-3 mb-4 border ${containerStyle}`}
       disabled={disabled}
     >
-      <Text className={`text-center text-sm font-bold px-4 ${textStyle}`}>
+      <Text className={`font-manrope-bold text-center text-sm font-bold px-4 ${textStyle}`}>
         {text}
       </Text>
     </TouchableOpacity>

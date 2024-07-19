@@ -31,7 +31,7 @@ const TextFieldInput: React.FC<TextFieldInputProps> = ({
       </Text>
       <View className="flex-row items-center bg-white border border-gray-300 rounded-xl p-3 mb-4 dark:bg-dark">
         <TextInput
-          className="flex-1 font-medium text-sm text-typography-900 dark:text-[#FDFDFD]"
+          className="font-manrope-medium flex-1 font-medium text-sm text-typography-900 dark:text-[#FDFDFD]"
           placeholder={placeholder}
           placeholderTextColor={
             colorScheme === ColorScheme.Light ? "#71717A" : "#A1A1AA"

@@ -24,7 +24,7 @@ const ButtonLabel: React.FC<ButtonLabelProps> = ({
       disabled={disabled}
     >
       <Text
-        className={`text-center text-sm font-medium px-1 text-primary-500 dark:text-primary-400 ${containerDisabledStyle}`}
+        className={`font-manrope-bold text-center text-sm font-medium px-1 text-primary-500 dark:text-primary-400 ${containerDisabledStyle}`}
       >
         {text}
       </Text>
