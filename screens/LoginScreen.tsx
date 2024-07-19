@@ -10,43 +10,31 @@ import { ButtonType } from "../enums/ButtonTypes.enum";
 import ButtonLabel from "../components/common/buttons/ButtonLabel";
 import PasswordChecker from "../components/common/shared/PasswordChecker";
 import { PasswordComplexity } from "../enums/PasswordComplexity.enum";
+import ButtonIcon from "../components/common/buttons/ButtonIcon";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [fullName, setFullName] = useState("Yassin Mohamed");
-  const [email, setEmail] = useState("yassineltayeb@live.com");
   const [password, setPassword] = useState("A@a123");
-  const [confirmPassword, setConfirmPassword] = useState("A@a123");
-  const [passwordComplexityChange, setPasswordComplexityChange] = useState("");
 
   const onFullNameInputChanged = (value: string) => setFullName(value);
-  const onEmailInputChanged = (value: string) => setEmail(value);
   const onPasswordInputChanged = (value: string) => setPassword(value);
-  const onConfirmPasswordInputChanged = (value: string) =>
-    setConfirmPassword(value);
-  const onPasswordComplexityChange = (value: string) =>
-    setPasswordComplexityChange(value);
 
   useEffect(() => {
     const enableButton = () => {
-      setButtonDisabled(
-        !(
-          fullName.length > 0 &&
-          email.length > 0 &&
-          password.length > 0 &&
-          confirmPassword === password &&
-          (passwordComplexityChange === PasswordComplexity.Strong ||
-            passwordComplexityChange === PasswordComplexity.VeryStrong)
-        )
-      );
+      setButtonDisabled(!(fullName.length > 0 && password.length > 0));
     };
 
     enableButton();
-  }, [fullName, email, password, confirmPassword, passwordComplexityChange]);
+  }, [fullName, password]);
 
   const handleContinue = () => {
     navigation.navigate("WelcomeScreen", { fullName: fullName });
+  };
+
+  const onRegisterHandler = () => {
+    navigation.navigate("RegisterScreen");
   };
 
   return (
@@ -55,20 +43,14 @@ const LoginScreen = () => {
         <View className="px-4 mt-4 flex-1 justify-between">
           <View>
             <Title title="Welcome Back" />
-            <SubTitle title="Please enter a form to login this app" />
+            <SubTitle title="Please fill out the form to log in to this app." />
             {/* Text Inputs */}
             <View className="mt-8">
-              {/* Full Name */}
+              {/* Email or Username */}
               <TextFieldInput
-                label="Full Name"
-                placeholder="Enter your full name"
+                label="Email or Username"
+                placeholder="Enter your email or username"
                 onChangeText={onFullNameInputChanged}
-              />
-              {/* Email */}
-              <TextFieldInput
-                label="Email"
-                placeholder="Enter your email"
-                onChangeText={onEmailInputChanged}
               />
               {/* Password */}
               <TextFieldInput
@@ -77,31 +59,37 @@ const LoginScreen = () => {
                 secure
                 onChangeText={onPasswordInputChanged}
               />
-              {/* Password Checker */}
-              {password.length > 0 && (
-                <PasswordChecker
-                  password={password}
-                  onPasswordComplexityChange={onPasswordComplexityChange}
+              <View className="flex-row justify-end">
+                <ButtonLabel text="Forgot Password" />
+              </View>
+              <View className="mt-8">
+                <Button
+                  text="Sign In"
+                  type={ButtonType.Primary}
+                  disabled={buttonDisabled}
+                  onClick={handleContinue}
                 />
-              )}
-              {/* Confirm Password */}
-              <TextFieldInput
-                label="Confirm Password"
-                placeholder="Confirm your password"
-                secure
-                onChangeText={onConfirmPasswordInputChanged}
-              />
+              </View>
+              <View className="mt-8">
+                <ButtonIcon
+                  text="Sign in with Google"
+                  type={ButtonType.Secondary}
+                  iconName="logo-google"
+                  onClick={() => {}}
+                />
+                <ButtonIcon
+                  text="Sign in with Apple"
+                  type={ButtonType.Primary}
+                  iconName="logo-apple"
+                  onClick={() => {}}
+                />
+              </View>
             </View>
           </View>
           <View>
-            <Button
-              text="Sign up"
-              type={ButtonType.Primary}
-              disabled={buttonDisabled}
-              onClick={handleContinue}
-            />
-            <View className="mb-10">
-              <ButtonLabel text="I have an account? Sign in" />
+            <View className="mb-10 flex-row justify-center item-center">
+              <SubTitle title="Don’t have an account?" />
+              <ButtonLabel text="Register" onClick={onRegisterHandler} />
             </View>
           </View>
         </View>
