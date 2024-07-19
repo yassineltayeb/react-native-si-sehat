@@ -17,6 +17,7 @@ export default function App() {
 
   useEffect(() => {
     setColorScheme("light");
+
     async function loadFonts() {
       await Font.loadAsync({
         "Manrope-Bold": require("./assets/fonts/Manrope-Bold.ttf"),
@@ -27,6 +28,7 @@ export default function App() {
         "Manrope-Regular": require("./assets/fonts/Manrope-Regular.ttf"),
         "Manrope-SemiBold": require("./assets/fonts/Manrope-SemiBold.ttf"),
       });
+      console.log("Fonts loaded");
       setFontsLoaded(true);
     }
 

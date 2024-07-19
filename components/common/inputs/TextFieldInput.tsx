@@ -26,7 +26,7 @@ const TextFieldInput: React.FC<TextFieldInputProps> = ({
 
   return (
     <View>
-      <Text className="font-medium text-sm text-typography-900 mb-2 dark:text-[#FDFDFD]">
+      <Text className="font-manrope-medium font-medium text-sm text-typography-900 mb-2 dark:text-[#FDFDFD]">
         {label}
       </Text>
       <View className="flex-row items-center bg-white border border-gray-300 rounded-xl p-3 mb-4 dark:bg-dark">

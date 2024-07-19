@@ -17,6 +17,10 @@ const FirstScreen = () => {
     navigation.navigate("RegisterScreen");
   };
 
+  const onClickSignIn = () => {
+    navigation.navigate("LoginScreen");
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white dark:bg-dark-900 items-center">
       <View className="flex-1">
@@ -51,7 +55,7 @@ const FirstScreen = () => {
           </View>
           <View className="flex-row items-center justify-center">
             <SubTitle title="Already have an account?" />
-            <ButtonLabel text="Sign In" />
+            <ButtonLabel text="Sign In" onClick={onClickSignIn} />
           </View>
         </View>
       </View>

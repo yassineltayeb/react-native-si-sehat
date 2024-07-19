@@ -46,7 +46,6 @@ const OnboardingScreen = () => {
       await AsyncStorage.setItem("isFirstLaunch", "false");
       navigation.navigate("FirstScreen");
     } catch (e) {
-      console.log("Error while saving to local storage");
     }
   };
 

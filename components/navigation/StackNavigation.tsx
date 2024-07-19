@@ -11,6 +11,7 @@ import { ColorScheme } from "../../enums/ColorScheme.enum";
 import OTPCodeScreen from "../../screens/OTPCodeScreen";
 import UserRegisterScreen from "../../screens/UserRegisterScreen";
 import WelcomeScreen from "../../screens/WelcomeScreen";
+import LoginScreen from "../../screens/LoginScreen";
 
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
@@ -25,11 +26,9 @@ const StackNavigation = () => {
       try {
         const value = await AsyncStorage.getItem("isFirstLaunch");
         if (value !== null && value === "false") {
-          console.log("value", value);
           setIsFirstLaunch(false);
         }
       } catch (e) {
-        console.log("error reading local storage");
       } finally {
         setIsLoading(false);
         await SplashScreen.hideAsync();
@@ -107,6 +106,15 @@ const StackNavigation = () => {
         component={WelcomeScreen}
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{
+          title: "",
+          headerTitle: "",
+          headerBackTitleVisible: false,
         }}
       />
     </Stack.Navigator>

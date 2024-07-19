@@ -11,7 +11,7 @@ import ButtonLabel from "../components/common/buttons/ButtonLabel";
 import PasswordChecker from "../components/common/shared/PasswordChecker";
 import { PasswordComplexity } from "../enums/PasswordComplexity.enum";
 
-const UserRegisterScreen = () => {
+const LoginScreen = () => {
   const navigation = useNavigation();
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [fullName, setFullName] = useState("Yassin Mohamed");
@@ -54,8 +54,8 @@ const UserRegisterScreen = () => {
       <View className="flex-1 bg-white dark:bg-dark-900">
         <View className="px-4 mt-4 flex-1 justify-between">
           <View>
-            <Title title="Register" />
-            <SubTitle title="Please enter a form to continue the register" />
+            <Title title="Welcome Back" />
+            <SubTitle title="Please enter a form to login this app" />
             {/* Text Inputs */}
             <View className="mt-8">
               {/* Full Name */}
@@ -110,4 +110,4 @@ const UserRegisterScreen = () => {
   );
 };
 
-export default UserRegisterScreen;
+export default LoginScreen;

@@ -7,9 +7,11 @@ interface TitleProps {
 
 const Title: React.FC<TitleProps> = ({ title }) => {
   return (
-    <Text className="font-bold text-2xl text-typography-800 dark:text-gray-50 mb-5">
-      {title}
-    </Text>
+    <>
+      <Text className="font-manrope-bold text-2xl text-typography-800 dark:text-gray-50 mb-5">
+        {title}
+      </Text>
+    </>
   );
 };
 

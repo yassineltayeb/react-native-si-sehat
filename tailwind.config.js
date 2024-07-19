@@ -9,15 +9,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        manrope: {
-          bold: ['Manrope-Bold', 'sans-serif'],
-          extrabold: ['Manrope-ExtraBold', 'sans-serif'],
-          extralight: ['Manrope-ExtraLight', 'sans-serif'],
-          light: ['Manrope-Light', 'sans-serif'],
-          medium: ['Manrope-Medium', 'sans-serif'],
-          regular: ['Manrope-Regular', 'sans-serif'],
-          semibold: ['Manrope-SemiBold', 'sans-serif'],
-        }
+        'manrope-bold': ['Manrope-Bold', 'sans-serif'],
+        'manrope-extrabold': ['Manrope-ExtraBold', 'sans-serif'],
+        'manrope-extralight': ['Manrope-ExtraLight', 'sans-serif'],
+        'manrope-light': ['Manrope-Light', 'sans-serif'],
+        'manrope-medium': ['Manrope-Medium', 'sans-serif'],
+        'manrope-regular': ['Manrope-Regular', 'sans-serif'],
+        'manrope-semibold': ['Manrope-SemiBold', 'sans-serif'],
       },
       colors: {
         'typography-50': '#D2D6DB',
