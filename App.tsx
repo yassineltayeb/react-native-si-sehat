@@ -5,18 +5,37 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { useColorScheme } from "nativewind";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { useDeviceContext, useAppColorScheme } from "twrnc";
+import { useDeviceContext } from "twrnc";
 import tw from "./lib/tailwind";
-import { View } from "react-native";
+import * as Font from "expo-font";
 
 export default function App() {
   const { colorScheme, toggleColorScheme, setColorScheme } = useColorScheme();
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
     setColorScheme("dark");
+    async function loadFonts() {
+      await Font.loadAsync({
+        "Manrope-Bold": require("./assets/fonts/Manrope-Bold.ttf"),
+        "Manrope-ExtraBold": require("./assets/fonts/Manrope-ExtraBold.ttf"),
+        "Manrope-ExtraLight": require("./assets/fonts/Manrope-ExtraLight.ttf"),
+        "Manrope-Light": require("./assets/fonts/Manrope-Light.ttf"),
+        "Manrope-Medium": require("./assets/fonts/Manrope-Medium.ttf"),
+        "Manrope-Regular": require("./assets/fonts/Manrope-Regular.ttf"),
+        "Manrope-SemiBold": require("./assets/fonts/Manrope-SemiBold.ttf"),
+      });
+      setFontsLoaded(true);
+    }
+
+    loadFonts();
   }, []);
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   useDeviceContext(tw, {
     observeDeviceColorSchemeChanges: false,

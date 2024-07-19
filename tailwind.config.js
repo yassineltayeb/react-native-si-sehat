@@ -8,6 +8,17 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        manrope: {
+          bold: ['Manrope-Bold', 'sans-serif'],
+          extrabold: ['Manrope-ExtraBold', 'sans-serif'],
+          extralight: ['Manrope-ExtraLight', 'sans-serif'],
+          light: ['Manrope-Light', 'sans-serif'],
+          medium: ['Manrope-Medium', 'sans-serif'],
+          regular: ['Manrope-Regular', 'sans-serif'],
+          semibold: ['Manrope-SemiBold', 'sans-serif'],
+        }
+      },
       colors: {
         'typography-50': '#D2D6DB',
         'typography-100': '#F7F7F7',
