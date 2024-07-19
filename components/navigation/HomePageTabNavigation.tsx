@@ -19,7 +19,7 @@ const HomePageTabNavigation = () => {
           colorScheme === ColorScheme.Light ? "#254EDB" : "#4F73DF",
         tabBarStyle: {
           backgroundColor:
-            colorScheme === ColorScheme.Light ? "#F3F4F6" : "#101828",
+            colorScheme === ColorScheme.Light ? "#FFFFFF" : "#101828",
           borderTopWidth: colorScheme === ColorScheme.Light ? 0 : 1,
           borderTopColor:
             colorScheme === ColorScheme.Light ? "transparent" : "#1D2939",
