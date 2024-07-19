@@ -3,7 +3,6 @@ import OnboardingScreen from "../../screens/OnboardingScreen";
 import FirstScreen from "../../screens/FirstScreen";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import PhoneNumberScreen from "../../screens/PhoneNumberScreen";
 import { useColorScheme } from "nativewind";
@@ -12,6 +11,7 @@ import OTPCodeScreen from "../../screens/OTPCodeScreen";
 import UserRegisterScreen from "../../screens/UserRegisterScreen";
 import WelcomeScreen from "../../screens/WelcomeScreen";
 import LoginScreen from "../../screens/LoginScreen";
+import HomePageTabNavigation from "./HomePageTabNavigation";
 
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
@@ -115,6 +115,13 @@ const OnboardingStackNavigation = () => {
           title: "",
           headerTitle: "",
           headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="HomePage"
+        component={HomePageTabNavigation}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>

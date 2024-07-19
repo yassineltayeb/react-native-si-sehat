@@ -30,7 +30,7 @@ const LoginScreen = () => {
   }, [fullName, password]);
 
   const handleContinue = () => {
-    navigation.navigate("WelcomeScreen", { fullName: fullName });
+    navigation.navigate("HomePage");
   };
 
   const onRegisterHandler = () => {
