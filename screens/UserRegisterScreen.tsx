@@ -79,6 +79,7 @@ const UserRegisterScreen = () => {
                 secure
                 onChangeText={onPasswordInputChanged}
               />
+              {/* Password Checker */}
               {password.length > 0 && (
                 <PasswordChecker
                   password={password}
