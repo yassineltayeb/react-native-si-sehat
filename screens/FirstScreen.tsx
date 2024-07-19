@@ -10,7 +10,7 @@ import ButtonLabel from "../components/common/buttons/ButtonLabel";
 import { useNavigation } from "@react-navigation/native";
 import TermsAndCondition from "../components/common/shared/TermsAndCondition";
 
-const LoginScreen = () => {
+const FirstScreen = () => {
   const navigation = useNavigation();
 
   const continueWithPhoneNumber = () => {
@@ -60,4 +60,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default FirstScreen;

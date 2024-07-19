@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import OnboardingScreen from "../../screens/OnboardingScreen";
-import LoginScreen from "../../screens/LoginScreen";
+import FirstScreen from "../../screens/FirstScreen";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
@@ -71,8 +71,8 @@ const StackNavigation = () => {
         />
       )}
       <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
+        name="FirstScreen"
+        component={FirstScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

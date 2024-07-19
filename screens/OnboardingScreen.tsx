@@ -41,10 +41,10 @@ const OnboardingScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const goToLoginScreen = async () => {
+  const goToFirstScreen = async () => {
     try {
       await AsyncStorage.setItem("isFirstLaunch", "false");
-      navigation.navigate("LoginScreen");
+      navigation.navigate("FirstScreen");
     } catch (e) {
       console.log("Error while saving to local storage");
     }
@@ -70,7 +70,7 @@ const OnboardingScreen = () => {
               <Button
                 text="Get Started !"
                 type={ButtonType.Primary}
-                onClick={goToLoginScreen}
+                onClick={goToFirstScreen}
               />
             </View>
           </View>
