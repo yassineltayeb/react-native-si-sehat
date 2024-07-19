@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import StackNavigation from "./components/navigation/StackNavigation";
+import OnboardingStackNavigation from "./components/navigation/OnboardingStackNavigation";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -49,7 +49,7 @@ export default function App() {
       <NavigationContainer>
         <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
           <StatusBar style={colorScheme == "dark" ? "light" : "dark"} />
-          <StackNavigation />
+          <OnboardingStackNavigation />
         </SafeAreaView>
       </NavigationContainer>
     </Provider>

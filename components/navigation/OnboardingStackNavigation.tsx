@@ -16,7 +16,7 @@ import LoginScreen from "../../screens/LoginScreen";
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
 
-const StackNavigation = () => {
+const OnboardingStackNavigation = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const { colorScheme } = useColorScheme();
@@ -121,4 +121,4 @@ const StackNavigation = () => {
   );
 };
 
-export default StackNavigation;
+export default OnboardingStackNavigation;
