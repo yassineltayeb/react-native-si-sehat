@@ -5,7 +5,7 @@ interface TitleProps {
   title: string;
 }
 
-const Title: React.FC<TitleProps> = ({ title }) => {
+const  Title: React.FC<TitleProps> = ({ title }) => {
   return (
     <>
       <Text className="font-manrope-bold text-2xl text-typography-800 dark:text-gray-50 mb-5">
