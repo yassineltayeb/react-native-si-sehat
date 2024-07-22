@@ -37,7 +37,7 @@ const HomeScreenProductCard: React.FC<HomeScreenProductCardProps> = ({
 
   return (
     <View className={`flex-1 p-3 my-3 rounded-xl mr-3 ${bgClassNames}`}>
-      <View className={`w-[42] he[42] p-1 rounded ${imageBGClassNames}`}>
+      <View className={`w-[42] he[42] p-1 rounded-md ${imageBGClassNames}`}>
         <Image source={image} resizeMode="contain" />
       </View>
       <Text className="font-manrope-bold text-base text-typography-900 dark:text-typography-50 mt-3">
