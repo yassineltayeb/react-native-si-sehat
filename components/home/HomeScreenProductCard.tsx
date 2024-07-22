@@ -16,19 +16,30 @@ const HomeScreenProductCard: React.FC<HomeScreenProductCardProps> = ({
   cardType,
 }) => {
   let bgClassNames = ``;
+  let imageBGClassNames = ``;
 
-  if (cardType == CardType.Primary)
+  if (cardType == CardType.Primary) {
     bgClassNames += "bg-primary-50 dark:bg-primary-900";
-  if (cardType == CardType.Success)
+    imageBGClassNames += "bg-primary-100 dark:bg-primary-800";
+  }
+  if (cardType == CardType.Success) {
     bgClassNames += "bg-success-50 dark:bg-success-900";
-  if (cardType == CardType.Warning)
+    imageBGClassNames += "bg-success-100 dark:bg-success-800";
+  }
+  if (cardType == CardType.Warning) {
     bgClassNames += "bg-warning-50 dark:bg-warning-900";
-  if (cardType == CardType.Danger)
+    imageBGClassNames += "bg-warning-100 dark:bg-warning-800";
+  }
+  if (cardType == CardType.Danger) {
     bgClassNames += "bg-danger-50 dark:bg-danger-900";
+    imageBGClassNames += "bg-danger-100 dark:bg-danger-800";
+  }
 
   return (
-    <View className={`h-[174] w-1/2-3 p-3 my-3 rounded-xl ${bgClassNames}`}>
-      <Image source={image} />
+    <View className={`flex-1 h-[174] p-3 my-3 rounded-xl ${bgClassNames}`}>
+      <View className={`${imageBGClassNames}`}>
+        <Image source={image} />
+      </View>
       <Text className="font-manrope-bold text-base text-typography-900 dark:text-typography-50">
         {title}
       </Text>
