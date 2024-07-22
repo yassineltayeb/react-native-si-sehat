@@ -12,7 +12,7 @@ const HomeScreen = () => {
         {/* Header */}
         <HomeScreenHeader />
         {/* Products */}
-        <View className="flex-row justify-between items-center">
+        <View className="flex flex-row flex-wrap justify-between items-center -mr-3">
           <HomeScreenProductCard
             image={require("../assets/home/menu-board.png")}
             title="Book an Appointment"
@@ -26,7 +26,7 @@ const HomeScreen = () => {
             cardType={CardType.Success}
           />
         </View>
-        <View className="flex-row justify-between items-center">
+        <View className="flex flex-row justify-between items-center -mr-3">
           <HomeScreenProductCard
             image={require("../assets/home/message-favorite.png")}
             title="Appointment with QR"
