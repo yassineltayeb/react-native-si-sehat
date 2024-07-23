@@ -5,9 +5,8 @@ import HomeScreenHeader from "../components/home/HomeScreenHeader";
 import HomeScreenProductCard from "../components/home/HomeScreenProductCard";
 import { CardType } from "../enums/CardType.enum";
 import TextFieldInput from "../components/common/inputs/TextFieldInput";
-import IconButton from "../components/common/buttons/IconButton";
 import { ButtonType } from "../enums/ButtonTypes.enum";
-import { Size } from "../enums/Size.enum";
+import FilterButton from "../components/home/FilterButton";
 
 const HomeScreen = () => {
   return (
@@ -20,11 +19,10 @@ const HomeScreen = () => {
           <View className="flex-1 mr-2">
             <TextFieldInput icon="search" placeholder="symptoms, diseses..." />
           </View>
-          <IconButton
+          <FilterButton
             type={ButtonType.Secondary}
             size={24}
             iconName="filter-sharp"
-            containerSize={Size.Medium}
           />
         </View>
         {/* Products */}

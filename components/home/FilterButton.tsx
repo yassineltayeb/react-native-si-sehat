@@ -1,8 +1,8 @@
-import { TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import React, { ComponentProps } from "react";
-import { ButtonType } from "../../../enums/ButtonTypes.enum";
 import { Ionicons } from "@expo/vector-icons"; // Adjust the import based on the icon library you're using
 import { useColorScheme } from "nativewind";
+import { ButtonType } from "../../enums/ButtonTypes.enum";
 
 interface IconButtonProps {
   type: string;
@@ -19,23 +19,16 @@ const IconButton: React.FC<IconButtonProps> = ({
 }) => {
   const { colorScheme, toggleColorScheme, setColorScheme } = useColorScheme();
 
-  const containerStyle =
-    type == ButtonType.Primary
-      ? "bg-primary-500 dark:bg-primary-400 border-0"
-      : "bg-gray-100 dark:bg-dark-800 border-gray-200";
-
   const iconColor =
-    type == ButtonType.Primary
-      ? "white"
-      : colorScheme === "dark"
-      ? "white"
-      : "black";
+      colorScheme === "light"
+      ? "#254EDB"
+      : "#4F73DF";
 
   return (
     <TouchableOpacity
       onPress={onClick}
       activeOpacity={0.8}
-      className={`rounded-lg shadow-md p-2 mb-4 border ${containerStyle}`}
+      className={`justify-center items-center rounded-lg h-[51] w-[51] mb-4 bg-primary-50 dark:bg-primary-900`}
     >
       <Ionicons name={iconName} size={size} color={iconColor} />
     </TouchableOpacity>
