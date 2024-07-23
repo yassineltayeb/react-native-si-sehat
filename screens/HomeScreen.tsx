@@ -7,6 +7,7 @@ import { CardType } from "../enums/CardType.enum";
 import TextFieldInput from "../components/common/inputs/TextFieldInput";
 import { ButtonType } from "../enums/ButtonTypes.enum";
 import FilterButton from "../components/home/FilterButton";
+import HomeScreenPromotions from "../components/home/HomeScreenPromotions";
 
 const HomeScreen = () => {
   return (
@@ -53,6 +54,10 @@ const HomeScreen = () => {
             subTitle="Queuing without the hustle"
             cardType={CardType.Danger}
           />
+        </View>
+        {/* Promotion */}
+        <View>
+          <HomeScreenPromotions />
         </View>
       </View>
     </SafeAreaView>
