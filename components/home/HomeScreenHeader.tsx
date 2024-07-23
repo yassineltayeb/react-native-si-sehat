@@ -7,7 +7,7 @@ const HomeScreenHeader = () => {
   return (
     <View className="flex-row justify-between items-center mt-4">
       <View className="flex-1">
-        <Text className="flex-1 font-manrope-bold text-2xl text-typography-800 dark:text-gray-50">
+        <Text className="flex-1 font-manrope-bold text-2xl text-typography-800 dark:text-gray-50 mb-2">
           {`Hi Yassin Mohamed`}
         </Text>
         <Text className="flex-1 font-manrope-medium font-medium text-md text-typography-800 dark:text-gray-50">
