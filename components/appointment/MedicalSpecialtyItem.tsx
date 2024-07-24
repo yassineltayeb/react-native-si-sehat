@@ -6,7 +6,6 @@ import SubTitle from "../common/labels/SubTitle";
 import { Ionicons } from "@expo/vector-icons"; // Adjust the import based on the icon library you're using
 import { useColorScheme } from "nativewind";
 import { ColorScheme } from "../../enums/ColorScheme.enum";
-import ButtonLabel from "../common/buttons/ButtonLabel";
 
 interface MedicalSpecialtyItemProps {
   medicalSpecialty: MedicalSpecialty;

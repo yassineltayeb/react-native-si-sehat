@@ -131,6 +131,8 @@ const OnboardingStackNavigation = () => {
         options={{
           title: "Book an Appointment",
           headerTitleAlign: "center",
+          headerBackTitle: "",
+          headerBackTitleVisible: false,
         }}
       />
     </Stack.Navigator>

@@ -7,8 +7,14 @@ import TextFieldInput from "../components/common/inputs/TextFieldInput";
 import FilterButton from "../components/home/FilterButton";
 import { ButtonType } from "../enums/ButtonTypes.enum";
 import MedicalSpecialtiesList from "../components/appointment/MedicalSpecialtiesList";
+import ButtonLabel from "../components/common/buttons/ButtonLabel";
+import { Ionicons } from "@expo/vector-icons"; // Adjust the import based on the icon library you're using
+import { useColorScheme } from "nativewind";
+import { ColorScheme } from "../enums/ColorScheme.enum";
 
 const AppointmentBookingScreen = () => {
+  const { colorScheme } = useColorScheme();
+
   return (
     <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
       <View className="m-4">
@@ -31,8 +37,16 @@ const AppointmentBookingScreen = () => {
             />
           </View>
           {/* Medical Specialties */}
-          <View>
-            <MedicalSpecialtiesList />
+          <MedicalSpecialtiesList />
+          <View className="flex flex-row items-center">
+            <View className="mr-3">
+              <ButtonLabel text="See More" />
+            </View>
+            <Ionicons
+              name="chevron-forward-outline"
+              size={23}
+              color={colorScheme === ColorScheme.Light ? "#254EDB" : "#4F73DF"}
+            />
           </View>
           <View></View>
         </View>

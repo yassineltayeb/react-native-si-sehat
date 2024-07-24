@@ -28,14 +28,14 @@ const HomeScreenPromotions = () => {
   const PromotionCard = ({ promotion }: { promotion: Promotion }) => {
     return (
       <View
-        className={`h-[104] w-[312] p-4 rounded-xl mr-3  ${promotion.backgroundColor}`}
+        className={`h-[104] w-[312] rounded-xl mr-3 relative overflow-hidden ${promotion.backgroundColor} `}
       >
         <Image
-          className="absolute h-[104] w-1/2 right-0"
-          resizeMode="cover"
+          className="absolute  max-h-full right-0 w-1/2 top-0 bottom-0"
+          resizeMode='contain'
           source={promotion.image}
         />
-        <Text className="font-manrope-bold font-bold text-sm text-white dark:text-dark">
+        <Text className="font-manrope-bold font-bold text-sm text-white dark:text-dark pl-4 pt-4">
           {promotion.description}
         </Text>
         <HomeScreenButtonLabel text="Find out now → " />

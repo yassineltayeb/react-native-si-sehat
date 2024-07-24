@@ -14,7 +14,7 @@ const HomeScreenButtonLabel: React.FC<HomeScreenButtonLabelProps> = ({
     <TouchableOpacity
       onPress={onClick}
       activeOpacity={0.8}
-      className={`flex-row border-0 bg-transparent mt-1`}
+      className={`flex-row border-0 bg-transparent mt-1 pl-4`}
     >
       <Text
         className={`font-manrope-medium font-medium text-xs text-white dark:text-dark`}
