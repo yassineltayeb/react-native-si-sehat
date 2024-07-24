@@ -56,7 +56,7 @@ const HomeScreen = () => {
           />
         </View>
         {/* Promotion */}
-        <View>
+        <View className="mt-4">
           <HomeScreenPromotions />
         </View>
       </View>
