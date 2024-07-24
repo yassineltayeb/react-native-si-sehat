@@ -8,8 +8,14 @@ import TextFieldInput from "../components/common/inputs/TextFieldInput";
 import { ButtonType } from "../enums/ButtonTypes.enum";
 import FilterButton from "../components/home/FilterButton";
 import HomeScreenPromotions from "../components/home/HomeScreenPromotions";
+import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
+  const navigateToScreen = (screen: string) => {
+    navigation.navigate(screen);
+  };
   return (
     <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
       <View className="flex-1 bg-white dark:bg-dark-900 p-4">
@@ -33,6 +39,9 @@ const HomeScreen = () => {
             title="Book an Appointment"
             subTitle="Find a Doctor or specialist"
             cardType={CardType.Primary}
+            onPress={() => {
+              navigateToScreen("AppointmentBookingScreen");
+            }}
           />
           <HomeScreenProductCard
             image={require("../assets/home/scan.png")}

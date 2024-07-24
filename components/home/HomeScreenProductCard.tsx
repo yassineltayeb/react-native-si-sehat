@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { CardType } from "../../enums/CardType.enum";
 
@@ -7,6 +7,7 @@ interface HomeScreenProductCardProps {
   title: string;
   subTitle: string;
   cardType: string;
+  onPress?: any;
 }
 
 const HomeScreenProductCard: React.FC<HomeScreenProductCardProps> = ({
@@ -14,6 +15,7 @@ const HomeScreenProductCard: React.FC<HomeScreenProductCardProps> = ({
   title,
   subTitle,
   cardType,
+  onPress
 }) => {
   let bgClassNames = ``;
   let imageBGClassNames = ``;
@@ -36,7 +38,11 @@ const HomeScreenProductCard: React.FC<HomeScreenProductCardProps> = ({
   }
 
   return (
-    <View className={`flex-1 p-3 my-3 rounded-xl mr-3 ${bgClassNames}`}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={onPress}
+      className={`flex-1 p-3 my-3 rounded-xl mr-3 ${bgClassNames}`}
+    >
       <View className={`w-[42] he[42] p-1 rounded-md ${imageBGClassNames}`}>
         <Image source={image} resizeMode="contain" />
       </View>
@@ -46,7 +52,7 @@ const HomeScreenProductCard: React.FC<HomeScreenProductCardProps> = ({
       <Text className="font-manrope-medium text-xs text-typography-500 dark:text-typography-400 mb-5">
         {subTitle}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
