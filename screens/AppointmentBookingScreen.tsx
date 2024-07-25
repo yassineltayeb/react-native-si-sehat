@@ -1,6 +1,5 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import AppointmentTitle from "../components/appointment/AppointmentTitle";
 import SubTitle from "../components/common/labels/SubTitle";
 import TextFieldInput from "../components/common/inputs/TextFieldInput";
@@ -16,7 +15,7 @@ const AppointmentBookingScreen = () => {
   const { colorScheme } = useColorScheme();
 
   return (
-    <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
+    <View className="flex-1 bg-white dark:bg-dark-900">
       <View className="m-4">
         <View className="">
           {/* Title */}
@@ -51,7 +50,7 @@ const AppointmentBookingScreen = () => {
           <View></View>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

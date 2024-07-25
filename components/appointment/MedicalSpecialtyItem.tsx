@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { MedicalSpecialty } from "../../models/appointment/medical-specialty.model";
 import AppointmentTitle from "./AppointmentTitle";
@@ -6,6 +6,7 @@ import SubTitle from "../common/labels/SubTitle";
 import { Ionicons } from "@expo/vector-icons"; // Adjust the import based on the icon library you're using
 import { useColorScheme } from "nativewind";
 import { ColorScheme } from "../../enums/ColorScheme.enum";
+import { useNavigation } from "@react-navigation/native";
 
 interface MedicalSpecialtyItemProps {
   medicalSpecialty: MedicalSpecialty;
@@ -15,9 +16,18 @@ const MedicalSpecialtyItem: React.FC<MedicalSpecialtyItemProps> = ({
   medicalSpecialty,
 }) => {
   const { colorScheme } = useColorScheme();
+  const navigation = useNavigation();
 
+  const navigateToScreen = (title: string) => {
+    navigation.navigate("SpecialistDoctorsScreen", { title });
+  };
+  
   return (
-    <View className="my-5">
+    <TouchableOpacity
+      onPress={() => navigateToScreen(medicalSpecialty.title)}
+      activeOpacity={0.8}
+      className="my-5"
+    >
       <View className="flex flex-row justify-between items-center">
         <View className="flex flex-row">
           <View className="flex flex-row">
@@ -36,10 +46,14 @@ const MedicalSpecialtyItem: React.FC<MedicalSpecialtyItemProps> = ({
           </View>
         </View>
         <View>
-          <Ionicons name="chevron-forward-outline" size={24} color={colorScheme === ColorScheme.Light ?"#254EDB" :"#4F73DF"} />
+          <Ionicons
+            name="chevron-forward-outline"
+            size={24}
+            color={colorScheme === ColorScheme.Light ? "#254EDB" : "#4F73DF"}
+          />
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

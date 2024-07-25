@@ -13,6 +13,7 @@ import WelcomeScreen from "../../screens/WelcomeScreen";
 import LoginScreen from "../../screens/LoginScreen";
 import HomePageTabNavigation from "./HomePageTabNavigation";
 import AppointmentBookingScreen from "../../screens/AppointmentBookingScreen";
+import SpecialistDoctorsScreen from "../../screens/SpecialistDoctorsScreen";
 
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
@@ -130,6 +131,16 @@ const OnboardingStackNavigation = () => {
         component={AppointmentBookingScreen}
         options={{
           title: "Book an Appointment",
+          headerTitleAlign: "center",
+          headerBackTitle: "",
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="SpecialistDoctorsScreen"
+        component={SpecialistDoctorsScreen}
+        options={{
+          title: "",
           headerTitleAlign: "center",
           headerBackTitle: "",
           headerBackTitleVisible: false,
