@@ -19,7 +19,7 @@ const SpecialistDoctorsItem: React.FC<SpecialistDoctorsItemProps> = ({
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => {}} activeOpacity={0.8} className="my-5">
+    <TouchableOpacity onPress={() => {}} activeOpacity={0.8} className="mb-5">
       <View className="flex flex-row justify-between items-start">
         <View className="flex flex-row">
           <View className="flex flex-row">

@@ -26,7 +26,7 @@ const MedicalSpecialtyItem: React.FC<MedicalSpecialtyItemProps> = ({
     <TouchableOpacity
       onPress={() => navigateToScreen(medicalSpecialty.title)}
       activeOpacity={0.8}
-      className="my-5"
+      className="mb-5"
     >
       <View className="flex flex-row justify-between items-center">
         <View className="flex flex-row">
