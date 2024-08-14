@@ -46,7 +46,7 @@ const UserRegisterScreen = () => {
   }, [fullName, email, password, confirmPassword, passwordComplexityChange]);
 
   const handleContinue = () => {
-    navigation.navigate("WelcomeScreen", { fullName: fullName });
+    navigation.navigate("WelcomeScreen", { fullName });
   };
 
   return (

@@ -1,4 +1,5 @@
 import { RouteProp } from "@react-navigation/native";
+import { SpecialistDoctor } from "../models/appointment/specialist-doctor.model";
 
 // Define a type for the route parameters
 export type RootStackParamList = {
@@ -10,6 +11,9 @@ export type RootStackParamList = {
     };
     SpecialistDoctorsScreen: {
         title: string;
+    },
+    SpecialistDoctorsDetailsScreen: {
+        specialistDoctor: SpecialistDoctor;
     }
 };
 
@@ -17,3 +21,4 @@ export type RootStackParamList = {
 export type OTPCodeScreenRouteProp = RouteProp<RootStackParamList, "OTPCodeScreen">;
 export type WelcomeScreenRouteProp = RouteProp<RootStackParamList, "WelcomeScreen">;
 export type SpecialistDoctorsScreenRouteProp = RouteProp<RootStackParamList, "SpecialistDoctorsScreen">;
+export type SpecialistDoctorsDetailsScreenRouteProp = RouteProp<RootStackParamList, "SpecialistDoctorsDetailsScreen">;

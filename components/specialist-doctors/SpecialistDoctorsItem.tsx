@@ -10,16 +10,29 @@ import { SpecialistDoctor } from "../../models/appointment/specialist-doctor.mod
 
 interface SpecialistDoctorsItemProps {
   specialistDoctor: SpecialistDoctor;
+  isTouchDisabled?: boolean;
+  isRatingHidden?: boolean;
 }
 
 const SpecialistDoctorsItem: React.FC<SpecialistDoctorsItemProps> = ({
   specialistDoctor,
+  isTouchDisabled,
+  isRatingHidden
 }) => {
   const { colorScheme } = useColorScheme();
   const navigation = useNavigation();
 
+  const navigateToDetailsScreen = () => {
+    navigation.navigate("SpecialistDoctorsDetailsScreen", { specialistDoctor });
+  };
+
   return (
-    <TouchableOpacity onPress={() => {}} activeOpacity={0.8} className="mb-5">
+    <TouchableOpacity
+      disabled={isTouchDisabled}
+      onPress={navigateToDetailsScreen}
+      activeOpacity={0.8}
+      className="mb-5"
+    >
       <View className="flex flex-row justify-between items-start">
         <View className="flex flex-row">
           <View className="flex flex-row">
@@ -40,7 +53,8 @@ const SpecialistDoctorsItem: React.FC<SpecialistDoctorsItemProps> = ({
             </View>
           </View>
         </View>
-        <View className="flex flex-row">
+        {/* Rating */}
+        {!isRatingHidden && <View className="flex flex-row">
           <Ionicons
             name="star-sharp"
             size={20}
@@ -49,7 +63,7 @@ const SpecialistDoctorsItem: React.FC<SpecialistDoctorsItemProps> = ({
           <View className="ml-2">
             <SubTitle title={specialistDoctor.rating.toString()} />
           </View>
-        </View>
+        </View>}
       </View>
     </TouchableOpacity>
   );

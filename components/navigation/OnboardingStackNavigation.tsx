@@ -14,6 +14,7 @@ import LoginScreen from "../../screens/LoginScreen";
 import HomePageTabNavigation from "./HomePageTabNavigation";
 import AppointmentBookingScreen from "../../screens/AppointmentBookingScreen";
 import SpecialistDoctorsScreen from "../../screens/SpecialistDoctorsScreen";
+import SpecialistDoctorsDetailsScreen from "../../screens/SpecialistDoctorsDetailsScreen";
 
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
@@ -139,6 +140,16 @@ const OnboardingStackNavigation = () => {
       <Stack.Screen
         name="SpecialistDoctorsScreen"
         component={SpecialistDoctorsScreen}
+        options={{
+          title: "",
+          headerTitleAlign: "center",
+          headerBackTitle: "",
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="SpecialistDoctorsDetailsScreen"
+        component={SpecialistDoctorsDetailsScreen}
         options={{
           title: "",
           headerTitleAlign: "center",
