@@ -1,18 +1,38 @@
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import React, { useEffect } from "react";
 import TextFieldInput from "../components/common/inputs/TextFieldInput";
 import FilterButton from "../components/home/FilterButton";
 import { ButtonType } from "../enums/ButtonTypes.enum";
-import ButtonLabel from "../components/common/buttons/ButtonLabel";
-import { Ionicons } from "@expo/vector-icons"; // Adjust the import based on the icon library you're using
-import { useColorScheme } from "nativewind";
-import { ColorScheme } from "../enums/ColorScheme.enum";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import SpecialistDoctorsList from "../components/specialist-doctors/SpecialistDoctorsList";
 import { SpecialistDoctorsScreenRouteProp } from "../types/route-params";
+import { LabelKeyValuePairs } from "../models/shared/label-key-value-pairs.model";
+import DropdownInput from "../components/common/inputs/DropdownInput";
+import tw from "../lib/tailwind";
+
+const availability: LabelKeyValuePairs[] = [
+  {
+    label: "Available Today",
+    value: "Available Today",
+  },
+  {
+    label: "Available Tomorrow",
+    value: "Available Tomorrow",
+  },
+];
+
+const genders: LabelKeyValuePairs[] = [
+  {
+    label: "Male",
+    value: "Male",
+  },
+  {
+    label: "Female",
+    value: "Female",
+  },
+];
 
 const SpecialistDoctorsScreen = () => {
-  const { colorScheme } = useColorScheme();
   const route = useRoute<SpecialistDoctorsScreenRouteProp>();
   const navigation = useNavigation();
   const { title } = route.params;
@@ -36,6 +56,14 @@ const SpecialistDoctorsScreen = () => {
               iconName="filter-sharp"
             />
           </View>
+          <ScrollView
+            style={tw``}
+            horizontal={true}
+            contentContainerStyle={tw`gap-4 mb-8`}
+          >
+            <DropdownInput items={availability} onValueChange={() => {}} />
+            <DropdownInput items={genders} onValueChange={() => {}} />
+          </ScrollView>
           {/* Medical Specialties */}
           <SpecialistDoctorsList />
           <View></View>
