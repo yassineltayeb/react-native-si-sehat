@@ -6,6 +6,8 @@ import PhoneNumberInput from "../components/common/inputs/PhoneNumberInput";
 import TermsAndConditionWithButton from "../components/common/shared/TermsAndConditionWithButton";
 import { useNavigation } from "@react-navigation/native";
 import KeyboardAvoiding from "../components/common/shared/KeyboardAvoiding";
+import phoneVerificationApi from "../api/phone-verification.api";
+import { GenerateOTPRequest } from "../types/phone-verification/generate-otp";
 
 const PhoneNumberScreen = () => {
   const navigation = useNavigation();
@@ -18,7 +20,24 @@ const PhoneNumberScreen = () => {
   };
 
   const handleContinue = () => {
-    navigation.navigate("OTPCodeScreen", { phoneNumber });
+    generateOtp();
+  };
+
+  const generateOtp = async () => {
+    try {
+      const generateOTPRequest: GenerateOTPRequest = {
+        phoneNumber: phoneNumber,
+      };
+
+      const response = await phoneVerificationApi.generateOtp(
+        generateOTPRequest
+      );
+      navigation.navigate("OTPCodeScreen", { phoneNumber });
+
+      console.log(response.otp);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
