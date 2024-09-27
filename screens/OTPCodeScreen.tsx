@@ -9,6 +9,8 @@ import OTPCodeInput from "../components/common/inputs/OTPCodeInput";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import KeyboardAvoiding from "../components/common/shared/KeyboardAvoiding";
 import ButtonLabel from "../components/common/buttons/ButtonLabel";
+import { VerifyOTPRequest } from "../types/phone-verification/verify-otp";
+import phoneVerificationApi from "../api/phone-verification.api";
 
 const OTPCodeScreen = () => {
   const navigation = useNavigation();
@@ -39,7 +41,27 @@ const OTPCodeScreen = () => {
   };
 
   const handelContinue = () => {
-    navigation.navigate("UserRegisterScreen", {});
+    verifyOtp();
+  };
+
+  const verifyOtp = async () => {
+    try {
+      const verifyOTPRequest: VerifyOTPRequest = {
+        phoneNumber: phoneNumber,
+        otp: Number(otpCode)
+      };
+
+      console.log(verifyOTPRequest)
+
+      const response = await phoneVerificationApi.verifyOtp(
+        verifyOTPRequest
+      );
+      navigation.navigate("UserRegisterScreen", {});
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const formatTime = (seconds: number) => {

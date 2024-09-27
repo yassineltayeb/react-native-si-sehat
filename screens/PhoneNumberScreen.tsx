@@ -34,6 +34,7 @@ const PhoneNumberScreen = () => {
       );
       navigation.navigate("OTPCodeScreen", { phoneNumber });
 
+      console.log(phoneNumber);
       console.log(response.otp);
     } catch (error) {
       console.log(error);
