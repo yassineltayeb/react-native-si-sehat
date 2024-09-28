@@ -39,7 +39,7 @@ const AppointmentBookingScreen = () => {
           </View>
           {/* Medical Specialties */}
           <MedicalSpecialtiesList searchTerm={searchTerm} />
-          <View className="flex flex-row items-center">
+          {/* <View className="flex flex-row items-center">
             <View className="mr-3">
               <ButtonLabel text="See More" />
             </View>
@@ -48,7 +48,7 @@ const AppointmentBookingScreen = () => {
               size={23}
               color={colorScheme === ColorScheme.Light ? "#254EDB" : "#4F73DF"}
             />
-          </View>
+          </View> */}
           <View></View>
         </View>
       </View>
