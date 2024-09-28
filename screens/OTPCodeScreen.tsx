@@ -11,6 +11,7 @@ import KeyboardAvoiding from "../components/common/shared/KeyboardAvoiding";
 import ButtonLabel from "../components/common/buttons/ButtonLabel";
 import { VerifyOTPRequest } from "../types/phone-verification/verify-otp";
 import phoneVerificationApi from "../api/phone-verification.api";
+import toast from "../utils/toast";
 
 const OTPCodeScreen = () => {
   const navigation = useNavigation();
@@ -48,18 +49,17 @@ const OTPCodeScreen = () => {
     try {
       const verifyOTPRequest: VerifyOTPRequest = {
         phoneNumber: phoneNumber,
-        otp: Number(otpCode)
+        otp: Number(otpCode),
       };
 
-      console.log(verifyOTPRequest)
+      console.log(verifyOTPRequest);
 
-      const response = await phoneVerificationApi.verifyOtp(
-        verifyOTPRequest
-      );
+      const response = await phoneVerificationApi.verifyOtp(verifyOTPRequest);
       navigation.navigate("UserRegisterScreen", {});
 
       console.log(response);
     } catch (error) {
+      toast.error("OTP Verification", "failed to verify otp");
       console.log(error);
     }
   };

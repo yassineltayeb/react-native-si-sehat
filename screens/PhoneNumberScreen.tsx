@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import KeyboardAvoiding from "../components/common/shared/KeyboardAvoiding";
 import phoneVerificationApi from "../api/phone-verification.api";
 import { GenerateOTPRequest } from "../types/phone-verification/generate-otp";
+import toast from "../utils/toast";
 
 const PhoneNumberScreen = () => {
   const navigation = useNavigation();
@@ -37,9 +38,10 @@ const PhoneNumberScreen = () => {
       console.log(phoneNumber);
       console.log(response.otp);
     } catch (error) {
+      toast.error("OTP", "Unable to send otp, please try again later");
       console.log(error);
     }
-  };
+  }
 
   return (
     <KeyboardAvoiding>

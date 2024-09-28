@@ -9,7 +9,7 @@ interface ToastOptions {
   position?: 'top' | 'bottom';
 }
 
-const showToast =({ type, text1, text2 = '', position = 'top' }: ToastOptions) => {
+const showToast = ({ type, text1, text2 = '', position = 'bottom' }: ToastOptions) => {
   Toast.show({
     type,
     text1,
@@ -19,16 +19,15 @@ const showToast =({ type, text1, text2 = '', position = 'top' }: ToastOptions) =
 };
 
 const toast = {
-  showSuccessToast:(message: string, description = '') => {
+  success: (message: string, description = '') => {
     showToast({ type: 'success', text1: message, text2: description });
   },
-  showErrorToast:(message: string, description = '') => {
+  error: (message: string, description = '') => {
     showToast({ type: 'error', text1: message, text2: description });
   },
-  showInfoToast:(message: string, description = '') => {
+  info: (message: string, description = '') => {
     showToast({ type: 'info', text1: message, text2: description });
   }
-  
 };
 
 export default toast;
