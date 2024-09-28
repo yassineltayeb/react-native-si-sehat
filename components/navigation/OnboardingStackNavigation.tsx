@@ -117,7 +117,7 @@ const OnboardingStackNavigation = () => {
               headerBackTitleVisible: false,
             }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="LoginScreen"
             component={LoginScreen}
             options={{
@@ -125,7 +125,7 @@ const OnboardingStackNavigation = () => {
               headerTitle: "",
               headerBackTitleVisible: false,
             }}
-          />
+          /> */}
           <Stack.Screen
             name="WelcomeScreen"
             component={WelcomeScreen}

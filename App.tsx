@@ -41,10 +41,10 @@ export default function App() {
         const token = await AsyncStorage.getItem("token");
         if (token) {
           const decodedToken = jwtDecode(token);
-    
+
           if (decodedToken && typeof decodedToken.exp !== "undefined") {
             const currentTime = Date.now() / 1000;
-    
+
             if (decodedToken.exp > currentTime) {
               setIsAuthenticated(true);
             } else {
@@ -62,7 +62,6 @@ export default function App() {
         setIsAuthenticated(false);
       }
     }
-    
 
     loadFonts();
     checkToken();
