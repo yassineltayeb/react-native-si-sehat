@@ -5,6 +5,8 @@ import specializationsApi from "../../api/specializations.api";
 import toast from "../../utils/toast";
 import { GetSpecializationsResponse } from "../../types/specializations/get-specializations";
 import SubTitle from "../common/labels/SubTitle";
+import { useColorScheme } from "nativewind";
+import { ColorScheme } from "../../enums/ColorScheme.enum";
 
 interface MedicalSpecialtiesListProps {
   searchTerm: string;
@@ -17,6 +19,7 @@ const MedicalSpecialtiesList: React.FC<MedicalSpecialtiesListProps> = ({
     Array<GetSpecializationsResponse>
   >([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { colorScheme } = useColorScheme();
 
   useEffect(() => {
     getSpecialties();
@@ -41,7 +44,7 @@ const MedicalSpecialtiesList: React.FC<MedicalSpecialtiesListProps> = ({
   if (isLoading) {
     return (
       <View className="flex-1 justify-center items-center mt-5">
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color={colorScheme == ColorScheme.Light ? "#71717A" : "#A1A1AA"}/>
       </View>
     );
   }

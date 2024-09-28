@@ -21,7 +21,7 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    setColorScheme("light");
+    setColorScheme("dark");
 
     async function loadFonts() {
       await Font.loadAsync({
