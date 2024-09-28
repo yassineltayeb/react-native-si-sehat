@@ -55,7 +55,7 @@ const OTPCodeScreen = () => {
       console.log(verifyOTPRequest);
 
       const response = await phoneVerificationApi.verifyOtp(verifyOTPRequest);
-      navigation.navigate("UserRegisterScreen", {});
+      navigation.navigate("UserRegisterScreen", { phoneNumber });
 
       console.log(response);
     } catch (error) {

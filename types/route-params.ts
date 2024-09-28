@@ -14,6 +14,9 @@ export type RootStackParamList = {
     },
     SpecialistDoctorsDetailsScreen: {
         specialistDoctor: SpecialistDoctor;
+    },
+    UserRegisterScreen :{
+        phoneNumber: string;
     }
 };
 
@@ -22,3 +25,4 @@ export type OTPCodeScreenRouteProp = RouteProp<RootStackParamList, "OTPCodeScree
 export type WelcomeScreenRouteProp = RouteProp<RootStackParamList, "WelcomeScreen">;
 export type SpecialistDoctorsScreenRouteProp = RouteProp<RootStackParamList, "SpecialistDoctorsScreen">;
 export type SpecialistDoctorsDetailsScreenRouteProp = RouteProp<RootStackParamList, "SpecialistDoctorsDetailsScreen">;
+export type UserRegisterScreenRouteProp = RouteProp<RootStackParamList, "UserRegisterScreen">;

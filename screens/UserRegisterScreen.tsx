@@ -2,7 +2,7 @@ import { View } from "react-native";
 import React, { useState, useEffect } from "react";
 import Title from "../components/common/labels/Title";
 import SubTitle from "../components/common/labels/SubTitle";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import KeyboardAvoiding from "../components/common/shared/KeyboardAvoiding";
 import TextFieldInput from "../components/common/inputs/TextFieldInput";
 import Button from "../components/common/buttons/Button";
@@ -10,14 +10,20 @@ import { ButtonType } from "../enums/ButtonTypes.enum";
 import ButtonLabel from "../components/common/buttons/ButtonLabel";
 import PasswordChecker from "../components/common/shared/PasswordChecker";
 import { PasswordComplexity } from "../enums/PasswordComplexity.enum";
+import { RegisterPatientRequest } from "../types/patients/register-patient";
+import patientsApi from "../api/patients.api";
+import toast from "../utils/toast";
+import { UserRegisterScreenRouteProp } from "../types/route-params";
 
 const UserRegisterScreen = () => {
   const navigation = useNavigation();
+  const route = useRoute<UserRegisterScreenRouteProp>();
+  const { phoneNumber } = route.params;
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [fullName, setFullName] = useState("Yassin Mohamed");
-  const [email, setEmail] = useState("yassineltayeb@live.com");
-  const [password, setPassword] = useState("A@a123");
-  const [confirmPassword, setConfirmPassword] = useState("A@a123");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordComplexityChange, setPasswordComplexityChange] = useState("");
 
   const onFullNameInputChanged = (value: string) => setFullName(value);
@@ -46,7 +52,31 @@ const UserRegisterScreen = () => {
   }, [fullName, email, password, confirmPassword, passwordComplexityChange]);
 
   const handleContinue = () => {
-    navigation.navigate("WelcomeScreen", { fullName });
+    registerPatient();
+  };
+
+  const registerPatient = async () => {
+    try {
+      const registerPatientRequest: RegisterPatientRequest = {
+        fullName: fullName,
+        email: email,
+        phoneNumber: phoneNumber,
+        password: password,
+      };
+
+      console.log('registerPatientRequest', registerPatientRequest);
+
+      const response = await patientsApi.register(registerPatientRequest);
+
+      navigation.navigate("LoginScreen", {});
+      
+      toast.success("Register", " Registered successfully");
+
+      console.log(response);
+    } catch (error) {
+      toast.error("Register", "Unable to register, please try again later");
+      console.log(error);
+    }
   };
 
   return (

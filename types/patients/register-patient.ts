@@ -1,4 +1,4 @@
-export interface RegisterPatientRequest {
+export interface        RegisterPatientRequest {
     fullName: string,
     email: string,
     phoneNumber: string,
