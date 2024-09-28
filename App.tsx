@@ -10,6 +10,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useDeviceContext } from "twrnc";
 import tw from "./lib/tailwind";
 import * as Font from "expo-font";
+import Toast from "react-native-toast-message";
 
 export default function App() {
   const { colorScheme, toggleColorScheme, setColorScheme } = useColorScheme();
@@ -51,6 +52,7 @@ export default function App() {
           <OnboardingStackNavigation />
         </SafeAreaView>
       </NavigationContainer>
+      <Toast />
     </Provider>
   );
 }
