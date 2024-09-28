@@ -8,9 +8,11 @@ import TextFieldInput from "../components/common/inputs/TextFieldInput";
 import Button from "../components/common/buttons/Button";
 import { ButtonType } from "../enums/ButtonTypes.enum";
 import ButtonLabel from "../components/common/buttons/ButtonLabel";
-import PasswordChecker from "../components/common/shared/PasswordChecker";
-import { PasswordComplexity } from "../enums/PasswordComplexity.enum";
 import ButtonIcon from "../components/common/buttons/ButtonIcon";
+import { LogInUserRequest } from "../types/users/logInUser";
+import usersApi from "../api/users.api";
+import toast from "../utils/toast";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -30,11 +32,37 @@ const LoginScreen = () => {
   }, [fullName, password]);
 
   const handleContinue = () => {
-    navigation.navigate("HomePage");
+    logInPatient();
   };
 
   const onRegisterHandler = () => {
     navigation.navigate("RegisterScreen");
+  };
+
+  const logInPatient = async () => {
+    try {
+      const logInUserRequest: LogInUserRequest = {
+        email: fullName,
+        password: password,
+      };
+
+      console.log("logInUserRequest", logInUserRequest);
+
+      const response = await usersApi.logIn(logInUserRequest);
+
+      console.log("access token", response.accessToken);
+
+      await AsyncStorage.setItem("token", response.accessToken);
+
+      navigation.navigate("HomePage", {});
+
+      toast.success("LogIn", " LoggedIn successfully");
+
+      console.log(response);
+    } catch (error) {
+      toast.error("LogIn", "Unable to logIn, please try again later");
+      console.log(error);
+    }
   };
 
   return (
