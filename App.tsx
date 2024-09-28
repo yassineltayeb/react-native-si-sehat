@@ -11,10 +11,13 @@ import { useDeviceContext } from "twrnc";
 import tw from "./lib/tailwind";
 import * as Font from "expo-font";
 import Toast from "react-native-toast-message";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { jwtDecode } from "jwt-decode";
 
 export default function App() {
   const { colorScheme, toggleColorScheme, setColorScheme } = useColorScheme();
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     setColorScheme("light");
@@ -32,7 +35,36 @@ export default function App() {
       setFontsLoaded(true);
     }
 
+    async function checkToken() {
+      try {
+        const token = await AsyncStorage.getItem("token");
+        if (token) {
+          const decodedToken = jwtDecode(token);
+    
+          if (decodedToken && typeof decodedToken.exp !== "undefined") {
+            const currentTime = Date.now() / 1000;
+    
+            if (decodedToken.exp > currentTime) {
+              setIsAuthenticated(true);
+            } else {
+              setIsAuthenticated(false);
+              await AsyncStorage.removeItem("token");
+            }
+          } else {
+            setIsAuthenticated(false);
+          }
+        } else {
+          setIsAuthenticated(false);
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        setIsAuthenticated(false);
+      }
+    }
+    
+
     loadFonts();
+    checkToken();
   }, []);
 
   useDeviceContext(tw, {

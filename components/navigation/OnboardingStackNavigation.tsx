@@ -21,6 +21,7 @@ const Stack = createStackNavigator();
 
 const OnboardingStackNavigation = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { colorScheme } = useColorScheme();
 
@@ -28,8 +29,14 @@ const OnboardingStackNavigation = () => {
     const getIsFirstLaunch = async () => {
       try {
         const value = await AsyncStorage.getItem("isFirstLaunch");
+        const token = await AsyncStorage.getItem("token");
+        console.log('token', token)
         if (value !== null && value === "false") {
-          setIsFirstLaunch(false);
+          if (token !== null) {
+            setIsAuthenticated(true);
+          } else {
+            setIsFirstLaunch(false);
+          }
         }
       } catch (e) {
       } finally {
@@ -65,6 +72,13 @@ const OnboardingStackNavigation = () => {
         },
       }}
     >
+      {isAuthenticated && ( <Stack.Screen
+        name="HomePage"
+        component={HomePageTabNavigation}
+        options={{
+          headerShown: false,
+        }}
+      />)}
       {isFirstLaunch && (
         <Stack.Screen
           name="OnboardingScreen"
@@ -118,13 +132,6 @@ const OnboardingStackNavigation = () => {
           title: "",
           headerTitle: "",
           headerBackTitleVisible: false,
-        }}
-      />
-      <Stack.Screen
-        name="HomePage"
-        component={HomePageTabNavigation}
-        options={{
-          headerShown: false,
         }}
       />
       <Stack.Screen
