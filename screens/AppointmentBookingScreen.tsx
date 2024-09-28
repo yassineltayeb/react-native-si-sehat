@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import AppointmentTitle from "../components/appointment/AppointmentTitle";
 import SubTitle from "../components/common/labels/SubTitle";
 import TextFieldInput from "../components/common/inputs/TextFieldInput";
@@ -13,6 +13,7 @@ import { ColorScheme } from "../enums/ColorScheme.enum";
 
 const AppointmentBookingScreen = () => {
   const { colorScheme } = useColorScheme();
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <View className="flex-1 bg-white dark:bg-dark-900">
@@ -27,6 +28,7 @@ const AppointmentBookingScreen = () => {
               <TextFieldInput
                 icon="search"
                 placeholder="symptoms, diseses..."
+                onChangeText={(value) => setSearchTerm(value)}
               />
             </View>
             <FilterButton
@@ -36,7 +38,7 @@ const AppointmentBookingScreen = () => {
             />
           </View>
           {/* Medical Specialties */}
-          <MedicalSpecialtiesList />
+          <MedicalSpecialtiesList searchTerm={searchTerm} />
           <View className="flex flex-row items-center">
             <View className="mr-3">
               <ButtonLabel text="See More" />

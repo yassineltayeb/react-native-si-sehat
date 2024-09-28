@@ -2,7 +2,7 @@ import axiosClient from './client';
 import { GetSpecializationsResponse } from '../types/specializations/get-specializations';
 
 const specializationsApi = {
-  getSpecializationsApi: (searchTerm?: string): Promise<Array<GetSpecializationsResponse>> => {
+  getSpecializations: (searchTerm?: string): Promise<Array<GetSpecializationsResponse>> => {
     const params: any = {};
 
     if (searchTerm) {

@@ -1,36 +1,37 @@
 import { FlatList } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MedicalSpecialtyItem from "./MedicalSpecialtyItem";
-import { MedicalSpecialty } from "../../models/appointment/medical-specialty.model";
+import specializationsApi from "../../api/specializations.api";
+import toast from "../../utils/toast";
+import { GetSpecializationsResponse } from "../../types/specializations/get-specializations";
 
-const medicalSpecialties: MedicalSpecialty[] = [
-  {
-    id: 1,
-    title: "Ear, Nose & Throat",
-    description: "Wide selection of doctor's specialties",
-    image: "👂🏻",
-  },
-  {
-    id: 2,
-    title: "Psychiatrist",
-    description: "Wide selection of doctor's specialties",
-    image: "🧠",
-  },
-  {
-    id: 3,
-    title: "Dentist",
-    description: "Wide selection of doctor's specialties",
-    image: "🦷",
-  },
-  {
-    id: 4,
-    title: "Dermato-venereologia",
-    description: "Wide selection of doctor's specialties",
-    image: "🤌",
-  },
-];
+interface MedicalSpecialtiesListProps {
+  searchTerm: string;
+}
 
-const MedicalSpecialtiesList = () => {
+const MedicalSpecialtiesList: React.FC<MedicalSpecialtiesListProps> = ({
+  searchTerm,
+}) => {
+  const [medicalSpecialties, setMedicalSpecialties] = useState<
+    Array<GetSpecializationsResponse>
+  >([]);
+  useEffect(() => {
+    getSpecialties();
+  }, [searchTerm]);
+
+  const getSpecialties = async () => {
+    try {
+      const response = await specializationsApi.getSpecializations(searchTerm);
+      setMedicalSpecialties(response);
+    } catch (error) {
+      toast.error(
+        "Medical Specializations",
+        "Unable to retrieve specializations, please try again later"
+      );
+      console.log(error);
+    }
+  };
+
   return (
     <FlatList
       showsHorizontalScrollIndicator={false}
