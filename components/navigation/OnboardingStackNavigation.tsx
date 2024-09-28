@@ -15,6 +15,8 @@ import HomePageTabNavigation from "./HomePageTabNavigation";
 import AppointmentBookingScreen from "../../screens/AppointmentBookingScreen";
 import SpecialistDoctorsScreen from "../../screens/SpecialistDoctorsScreen";
 import SpecialistDoctorsDetailsScreen from "../../screens/SpecialistDoctorsDetailsScreen";
+import { useNavigation } from "@react-navigation/native";
+import { navigate } from "./RootNavigation";
 
 SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
@@ -30,12 +32,14 @@ const OnboardingStackNavigation = () => {
       try {
         const value = await AsyncStorage.getItem("isFirstLaunch");
         const token = await AsyncStorage.getItem("token");
-        console.log('token', token)
+        console.log("isFirstLaunch", isFirstLaunch);
+        console.log("token", token);
         if (value !== null && value === "false") {
+          setIsFirstLaunch(false);
+
           if (token !== null) {
             setIsAuthenticated(true);
-          } else {
-            setIsFirstLaunch(false);
+            navigate("HomePage");
           }
         }
       } catch (e) {
@@ -46,7 +50,7 @@ const OnboardingStackNavigation = () => {
     };
 
     getIsFirstLaunch();
-  }, []);
+  }, [isAuthenticated]);
   if (isLoading) {
     return;
   }
@@ -72,13 +76,6 @@ const OnboardingStackNavigation = () => {
         },
       }}
     >
-      {isAuthenticated && ( <Stack.Screen
-        name="HomePage"
-        component={HomePageTabNavigation}
-        options={{
-          headerShown: false,
-        }}
-      />)}
       {isFirstLaunch && (
         <Stack.Screen
           name="OnboardingScreen"
@@ -86,41 +83,62 @@ const OnboardingStackNavigation = () => {
           options={{ headerShown: false }}
         />
       )}
+      {!isAuthenticated && (
+        <>
+          <Stack.Screen
+            name="FirstScreen"
+            component={FirstScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="RegisterScreen"
+            component={PhoneNumberScreen}
+            options={{
+              title: "",
+              headerTitle: "",
+              headerBackTitleVisible: false,
+            }}
+          />
+          <Stack.Screen
+            name="OTPCodeScreen"
+            component={OTPCodeScreen}
+            options={{
+              title: "",
+              headerTitle: "",
+              headerBackTitleVisible: false,
+            }}
+          />
+          <Stack.Screen
+            name="UserRegisterScreen"
+            component={UserRegisterScreen}
+            options={{
+              title: "",
+              headerTitle: "",
+              headerBackTitleVisible: false,
+            }}
+          />
+          <Stack.Screen
+            name="LoginScreen"
+            component={LoginScreen}
+            options={{
+              title: "",
+              headerTitle: "",
+              headerBackTitleVisible: false,
+            }}
+          />
+          <Stack.Screen
+            name="WelcomeScreen"
+            component={WelcomeScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </>
+      )}
+
       <Stack.Screen
-        name="FirstScreen"
-        component={FirstScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="RegisterScreen"
-        component={PhoneNumberScreen}
-        options={{
-          title: "",
-          headerTitle: "",
-          headerBackTitleVisible: false,
-        }}
-      />
-      <Stack.Screen
-        name="OTPCodeScreen"
-        component={OTPCodeScreen}
-        options={{
-          title: "",
-          headerTitle: "",
-          headerBackTitleVisible: false,
-        }}
-      />
-      <Stack.Screen
-        name="UserRegisterScreen"
-        component={UserRegisterScreen}
-        options={{
-          title: "",
-          headerTitle: "",
-          headerBackTitleVisible: false,
-        }}
-      />
-      <Stack.Screen
-        name="WelcomeScreen"
-        component={WelcomeScreen}
+        name="HomePage"
+        component={HomePageTabNavigation}
         options={{
           headerShown: false,
         }}

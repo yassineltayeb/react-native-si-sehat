@@ -13,6 +13,7 @@ import * as Font from "expo-font";
 import Toast from "react-native-toast-message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
+import { navigationRef } from "./components/navigation/RootNavigation";
 
 export default function App() {
   const { colorScheme, toggleColorScheme, setColorScheme } = useColorScheme();
@@ -78,7 +79,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <SafeAreaView className="flex-1 bg-white dark:bg-dark-900">
           <StatusBar style={colorScheme == "dark" ? "light" : "dark"} />
           <OnboardingStackNavigation />
