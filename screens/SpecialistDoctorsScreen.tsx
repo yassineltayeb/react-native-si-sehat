@@ -9,6 +9,7 @@ import { SpecialistDoctorsScreenRouteProp } from "../types/route-params";
 import { LabelKeyValuePairs } from "../models/shared/label-key-value-pairs.model";
 import DropdownInput from "../components/common/inputs/DropdownInput";
 import tw from "../lib/tailwind";
+import DropdownComponent from "../components/common/inputs/DropdownComponent";
 
 const availability: LabelKeyValuePairs[] = [
   {
@@ -61,8 +62,16 @@ const SpecialistDoctorsScreen = () => {
             horizontal={true}
             contentContainerStyle={tw`gap-4 mb-8`}
           >
-            <DropdownInput items={availability} onValueChange={() => {}} />
-            <DropdownInput items={genders} onValueChange={() => {}} />
+            <DropdownComponent
+              items={availability}
+              placeholder="Availability"
+              onValueChange={() => {}}
+            />
+            <DropdownComponent
+              items={genders}
+              placeholder="Gender"
+              onValueChange={() => {}}
+            />
           </ScrollView>
           {/* Medical Specialties */}
           <SpecialistDoctorsList />
